@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_store_service_tags",
+  "info": {
+    "displayName": "Service Tag",
+    "description": "Service offerings with icon and description"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    }
+  }
+}

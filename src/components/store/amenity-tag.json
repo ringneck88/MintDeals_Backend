@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_store_amenity_tags",
+  "info": {
+    "displayName": "Amenity Tag",
+    "description": "Store amenities with icon and description"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    }
+  }
+}

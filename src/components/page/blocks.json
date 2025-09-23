@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_page_blocks",
+  "info": {
+    "displayName": "blocks",
+    "description": "Dynamic page blocks component"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["hero", "content", "cta", "gallery", "testimonial"],
+      "default": "content"
+    },
+    "media": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": ["images", "videos"]
+    }
+  }
+}

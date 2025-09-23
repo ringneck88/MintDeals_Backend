@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_legal_disclaimers",
+  "info": {
+    "displayName": "Disclaimer",
+    "description": "Legal disclaimers with title, content, and type"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "content": {
+      "type": "richtext",
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "general",
+        "medical",
+        "legal",
+        "financial",
+        "liability",
+        "privacy",
+        "terms"
+      ],
+      "default": "general"
+    }
+  }
+}

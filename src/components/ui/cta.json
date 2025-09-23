@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_ui_ctas",
+  "info": {
+    "displayName": "CTA",
+    "description": "Call-to-action component with text, link, and style"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "style": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "outline",
+        "ghost",
+        "link"
+      ],
+      "default": "primary"
+    }
+  }
+}

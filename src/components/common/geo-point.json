@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_common_geo_points",
+  "info": {
+    "displayName": "Geo Point",
+    "description": "Geographic coordinates with latitude and longitude"
+  },
+  "options": {},
+  "attributes": {
+    "lat": {
+      "type": "decimal",
+      "required": true,
+      "min": -90,
+      "max": 90
+    },
+    "lng": {
+      "type": "decimal",
+      "required": true,
+      "min": -180,
+      "max": 180
+    }
+  }
+}

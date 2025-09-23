@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "compliance_policies",
+  "info": {
+    "singularName": "compliance-policy",
+    "pluralName": "compliance-policies",
+    "displayName": "Compliance Policy",
+    "description": "State-level compliance rules and regulations"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "maxLength": 200
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "body": {
+      "type": "richtext",
+      "required": true
+    },
+    "effective_date": {
+      "type": "date",
+      "required": true
+    },
+    "expires_date": {
+      "type": "date"
+    },
+    "region": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::region.region",
+      "inversedBy": "compliance_policies"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

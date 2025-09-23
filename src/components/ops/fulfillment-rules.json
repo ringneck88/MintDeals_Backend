@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_ops_fulfillment_rules",
+  "info": {
+    "displayName": "Fulfillment Rules",
+    "description": "Rules for order fulfillment including minimums, maximums, and delivery options"
+  },
+  "options": {},
+  "attributes": {
+    "minOrderAmount": {
+      "type": "decimal",
+      "required": false,
+      "min": 0,
+      "default": 0
+    },
+    "maxOrderAmount": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "deliveryRadius": {
+      "type": "decimal",
+      "required": false,
+      "min": 0
+    },
+    "pickupEnabled": {
+      "type": "boolean",
+      "default": true
+    },
+    "deliveryEnabled": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,52 @@
+# Strapi Backend Specific
+
+# Build output
+dist/
+build/
+
+# Database files
+.tmp/
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Strapi specific
+.cache/
+.strapi/
+.strapi-updater.json
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Dependencies
+node_modules/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Backup files
+*.backup*
+*.bak
+
+# Export files (temporary)
+strapi-export/
+exports/
+
+# Development files
+fix-stores.js
+test-*.js
+setup-data.js
+
+# Archive files
+*.tar.gz
+*.zip

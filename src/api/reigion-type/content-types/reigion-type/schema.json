@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reigion_types",
+  "info": {
+    "singularName": "reigion-type",
+    "pluralName": "reigion-types",
+    "displayName": "Reigion type"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    }
+  }
+}
