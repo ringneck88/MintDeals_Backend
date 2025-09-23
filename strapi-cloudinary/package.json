@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "strapi-cloudinary",
   "version": "0.1.0",
   "private": true,
   "description": "A Strapi application",
@@ -15,15 +15,10 @@
     "upgrade:dry": "npx @strapi/upgrade latest --dry"
   },
   "dependencies": {
-    "@_sh/strapi-plugin-ckeditor": "^6.0.3",
-    "@strapi/plugin-cloud": "5.23.1",
-    "@strapi/plugin-documentation": "^5.23.1",
-    "@strapi/plugin-graphql": "^5.23.4",
-    "@strapi/plugin-users-permissions": "5.23.1",
-    "@strapi/provider-upload-cloudinary": "^5.23.6",
-    "@strapi/strapi": "5.23.1",
+    "@strapi/plugin-cloud": "5.23.6",
+    "@strapi/plugin-users-permissions": "5.23.6",
+    "@strapi/strapi": "5.23.6",
     "better-sqlite3": "11.3.0",
-    "pg": "^8.16.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
@@ -40,7 +35,7 @@
     "npm": ">=6.0.0"
   },
   "strapi": {
-    "uuid": "749ecabd-d73c-467d-8c6a-5f41a1b462b9",
-    "installId": "377d04e6d0ae13c1ee1c6bf289fc6138070156bd46b754497c1b1de8fbbdde35"
+    "uuid": "0c420fe6-73a7-4cb8-82e0-ef1cf257ebe4",
+    "installId": "4de75ea0d3a0edc631f7a4dac9b4222e3af228b779379de2003a454b1348a135"
   }
 }
