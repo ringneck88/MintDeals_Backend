@@ -1,0 +1,26 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../../../../FLMintDeal/backend/config"
+		},
+		{
+			"path": "../../../../FLMintDeal/backend/node_modules"
+		},
+		{
+			"path": "../../../../FLMintDeal/backend/src"
+		},
+		{
+			"path": "../../../../FLMintDeal/backend/types"
+		},
+		{
+			"path": "../../../../FLMintDeal/frontend"
+		},
+		{
+			"path": "../../../../FLMintDeal/frontend/src"
+		}
+	],
+	"settings": {}
+}
