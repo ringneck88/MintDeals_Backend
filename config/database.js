@@ -27,18 +27,18 @@ module.exports = ({ env }) => {
     }
   }
 
-  // Fallback to SQLite for development or if no DATABASE_URL
-  if (env('NODE_ENV') === 'production' && !databaseUrl) {
-    console.warn('⚠️  No DATABASE_URL found, using SQLite (not recommended for production)');
-  }
-
+  // PostgreSQL configuration only
   return {
     connection: {
-      client: env('DATABASE_CLIENT', 'sqlite'),
+      client: 'postgres',
       connection: {
-        filename: env('DATABASE_FILENAME', '.tmp/data.db'),
+        host: env('DATABASE_HOST', 'localhost'),
+        port: env.int('DATABASE_PORT', 5432),
+        database: env('DATABASE_NAME', 'mintdeals_db'),
+        user: env('DATABASE_USERNAME', 'postgres'),
+        password: env('DATABASE_PASSWORD', ''),
+        ssl: env.bool('DATABASE_SSL', false) ? { rejectUnauthorized: false } : false,
       },
-      useNullAsDefault: true,
       debug: false,
     },
   };

@@ -24,7 +24,6 @@
     "@strapi/plugin-users-permissions": "5.23.1",
     "@strapi/provider-upload-cloudinary": "^5.23.6",
     "@strapi/strapi": "5.23.1",
-    "better-sqlite3": "11.3.0",
     "pg": "^8.16.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -32,6 +31,7 @@
     "styled-components": "^6.0.0"
   },
   "devDependencies": {
+    "@railway/cli": "^4.8.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
