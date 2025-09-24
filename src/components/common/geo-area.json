@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_common_geo_areas",
+  "info": {
+    "displayName": "Geo Area",
+    "icon": "earth"
+  },
+  "options": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "WKT": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

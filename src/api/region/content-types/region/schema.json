@@ -117,6 +117,11 @@
       "relation": "manyToMany",
       "target": "api::announcement.announcement",
       "mappedBy": "regions"
+    },
+    "geoArea": {
+      "type": "component",
+      "component": "common.geo-area",
+      "repeatable": false
     }
   }
 }

@@ -42,6 +42,11 @@
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::dosage-ingredint.dosage-ingredint"
+    },
+    "dosing_form": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::dosage-form.dosage-form"
     }
   }
 }
