@@ -32,6 +32,16 @@
         "videos",
         "audios"
       ]
+    },
+    "dosing_forms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dosage-form.dosage-form"
+    },
+    "dosing_products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dosing-product.dosing-product"
     }
   }
 }

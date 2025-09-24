@@ -37,6 +37,11 @@
       "type": "component",
       "component": "dosing.dosing-cannabinoids-per-dose",
       "repeatable": true
+    },
+    "dosing_ingredints": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::dosage-ingredint.dosage-ingredint"
     }
   }
 }
