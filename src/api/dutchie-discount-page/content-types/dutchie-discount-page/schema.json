@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dutchie_discount_pages",
+  "info": {
+    "singularName": "dutchie-discount-page",
+    "pluralName": "dutchie-discount-pages",
+    "displayName": "Dutchie Discount Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

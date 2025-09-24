@@ -4,7 +4,7 @@
   "info": {
     "singularName": "page",
     "pluralName": "pages",
-    "displayName": "Page",
+    "displayName": "Global Page",
     "description": "CMS pages with dynamic layouts"
   },
   "options": {
@@ -14,8 +14,8 @@
   "attributes": {
     "title": {
       "type": "string",
-      "required": true,
-      "maxLength": 200
+      "maxLength": 200,
+      "required": true
     },
     "slug": {
       "type": "uid",
@@ -24,13 +24,13 @@
     },
     "layout": {
       "type": "component",
-      "repeatable": true,
-      "component": "page.blocks"
+      "component": "page.blocks",
+      "repeatable": true
     },
     "seo": {
       "type": "component",
-      "repeatable": false,
-      "component": "seo.meta"
+      "component": "seo.meta",
+      "repeatable": false
     },
     "brand": {
       "type": "relation",

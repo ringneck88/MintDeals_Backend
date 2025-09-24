@@ -1,0 +1,14 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dutcie_menu_pages",
+  "info": {
+    "singularName": "dutcie-menu-page",
+    "pluralName": "dutcie-menu-pages",
+    "displayName": "Dutcie Menu Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

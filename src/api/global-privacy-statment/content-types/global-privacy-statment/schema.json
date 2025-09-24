@@ -1,0 +1,14 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_privacy_statments",
+  "info": {
+    "singularName": "global-privacy-statment",
+    "pluralName": "global-privacy-statments",
+    "displayName": "Global Privacy Statment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}

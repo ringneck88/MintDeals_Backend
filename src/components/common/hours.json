@@ -8,6 +8,7 @@
   "attributes": {
     "dayOfWeek": {
       "type": "enumeration",
+      "required": true,
       "enum": [
         "monday",
         "tuesday",
@@ -16,8 +17,7 @@
         "friday",
         "saturday",
         "sunday"
-      ],
-      "required": true
+      ]
     },
     "openTime": {
       "type": "time"
@@ -28,6 +28,9 @@
     "isClosed": {
       "type": "boolean",
       "default": false
+    },
+    "is24hours": {
+      "type": "boolean"
     }
   }
 }

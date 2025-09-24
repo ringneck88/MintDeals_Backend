@@ -1,0 +1,14 @@
+{
+  "kind": "singleType",
+  "collectionName": "global_contact_us_pages",
+  "info": {
+    "singularName": "global-contact-us-page",
+    "pluralName": "global-contact-us-pages",
+    "displayName": "Global Contact Us Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {}
+}
