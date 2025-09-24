@@ -31,12 +31,10 @@
       ]
     },
     "primary_color": {
-      "type": "string",
-      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+      "type": "string"
     },
     "secondary_color": {
-      "type": "string",
-      "regex": "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$"
+      "type": "string"
     },
     "default_seo": {
       "type": "component",
