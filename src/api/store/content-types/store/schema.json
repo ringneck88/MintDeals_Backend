@@ -127,7 +127,7 @@
         }
       },
       "component": "common.hours",
-      "repeatable": false
+      "repeatable": true
     },
     "hour_exceptions": {
       "type": "component",
