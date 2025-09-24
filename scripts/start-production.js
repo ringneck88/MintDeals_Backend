@@ -68,7 +68,7 @@ console.log('\n=================================');
 console.log('Starting Strapi...');
 console.log('=================================\n');
 
-// Start Strapi
+// Start Strapi directly
 const strapi = require('@strapi/strapi');
 
 async function startStrapi() {
@@ -77,12 +77,7 @@ async function startStrapi() {
     await app.start();
     console.log('✅ Strapi started successfully!');
   } catch (error) {
-    console.error('❌ Failed to start Strapi:', error.message);
-    if (error.errors) {
-      error.errors.forEach((err) => {
-        console.error('  -', err.message || err);
-      });
-    }
+    console.error('❌ Failed to start Strapi:', error.message || error);
     process.exit(1);
   }
 }

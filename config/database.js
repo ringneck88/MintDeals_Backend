@@ -34,7 +34,7 @@ module.exports = ({ env }) => {
 
   return {
     connection: {
-      client: env('DATABASE_CLIENT', 'better-sqlite3'),
+      client: env('DATABASE_CLIENT', 'sqlite'),
       connection: {
         filename: env('DATABASE_FILENAME', '.tmp/data.db'),
       },
