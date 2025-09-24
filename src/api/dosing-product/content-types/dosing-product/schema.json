@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dosing_products",
+  "info": {
+    "singularName": "dosing-product",
+    "pluralName": "dosing-products",
+    "displayName": "Dosing Product"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Name",
+      "required": true
+    },
+    "Discription": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "DosingPerDose": {
+      "type": "component",
+      "component": "dosing.dosing-cannabinoids-per-dose",
+      "repeatable": true
+    }
+  }
+}

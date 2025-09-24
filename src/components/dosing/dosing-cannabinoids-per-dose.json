@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_dosing_dosing_cannabinoids_per_doses",
+  "info": {
+    "displayName": "DosingCannabinoidsPerDose",
+    "icon": "seed"
+  },
+  "options": {},
+  "attributes": {
+    "Cannabinoid": {
+      "type": "enumeration",
+      "enum": [
+        "THC",
+        "CBD"
+      ]
+    },
+    "Amount": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "max": 500
+    },
+    "unite": {
+      "type": "enumeration",
+      "enum": [
+        "Gram",
+        "onuce",
+        "Pound",
+        "Millitter",
+        "Milligram"
+      ]
+    },
+    "Per": {
+      "type": "enumeration",
+      "enum": [
+        "Dose",
+        "Chew",
+        "Package"
+      ]
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "dosing_guild_pages",
+  "info": {
+    "singularName": "dosing-guild-page",
+    "pluralName": "dosing-guild-pages",
+    "displayName": "Dosing Guild Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Title",
+      "required": true
+    },
+    "DosingGuideDiscription": {
+      "type": "text"
+    },
+    "DosingGuideLogo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

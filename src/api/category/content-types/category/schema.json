@@ -10,5 +10,30 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name",
+      "required": true
+    },
+    "Discription": {
+      "type": "text"
+    },
+    "RichText": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "SEO": {
+      "type": "component",
+      "component": "seo.meta",
+      "repeatable": false
+    }
+  }
 }

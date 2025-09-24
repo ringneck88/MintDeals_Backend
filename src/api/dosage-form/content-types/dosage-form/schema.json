@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dosage_forms",
+  "info": {
+    "singularName": "dosage-form",
+    "pluralName": "dosage-forms",
+    "displayName": "Dosing Form"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "Discription": {
+      "type": "text"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Name",
+      "required": true
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

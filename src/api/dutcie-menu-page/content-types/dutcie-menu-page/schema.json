@@ -10,5 +10,21 @@
     "draftAndPublish": true
   },
   "pluginOptions": {},
-  "attributes": {}
+  "attributes": {
+    "Title": {
+      "type": "string",
+      "required": true
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "Title",
+      "required": true
+    },
+    "Discription": {
+      "type": "text"
+    },
+    "DutchieMenuScript": {
+      "type": "string"
+    }
+  }
 }

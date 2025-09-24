@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dosage_ingredints",
+  "info": {
+    "singularName": "dosage-ingredint",
+    "pluralName": "dosage-ingredints",
+    "displayName": "Dosing Ingredint"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "Name"
+    },
+    "Discription": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}

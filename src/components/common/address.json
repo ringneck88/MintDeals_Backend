@@ -24,8 +24,8 @@
     },
     "country": {
       "type": "string",
-      "required": true,
-      "default": "United States"
+      "default": "United States",
+      "required": false
     }
   }
 }
