@@ -70,4 +70,4 @@ console.log('=================================\n');
 
 // Start Strapi
 const strapi = require('@strapi/strapi');
-strapi().start();
+strapi.createStrapi().start();
