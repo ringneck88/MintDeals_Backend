@@ -122,6 +122,18 @@
       "type": "component",
       "component": "common.geo-area",
       "repeatable": false
+    },
+    "region": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::region.region",
+      "inversedBy": "PaarenRregion"
+    },
+    "PaarenRregion": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::region.region",
+      "mappedBy": "region"
     }
   }
 }
