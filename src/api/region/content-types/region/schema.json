@@ -123,17 +123,10 @@
       "component": "common.geo-area",
       "repeatable": false
     },
-    "region": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::region.region",
-      "inversedBy": "PaarenRregion"
-    },
-    "PaarenRregion": {
+    "parent_regions": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::region.region",
-      "mappedBy": "region"
+      "target": "api::region.region"
     }
   }
 }

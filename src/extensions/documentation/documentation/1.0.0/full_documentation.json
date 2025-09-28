@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-09-28T04:00:58.927Z"
+    "x-generation-date": "2025-09-28T15:46:02.879Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -18396,18 +18396,7 @@
               "geoArea": {
                 "$ref": "#/components/schemas/CommonGeoAreaComponent"
               },
-              "region": {
-                "oneOf": [
-                  {
-                    "type": "integer"
-                  },
-                  {
-                    "type": "string"
-                  }
-                ],
-                "example": "string or id"
-              },
-              "PaarenRregion": {
+              "parent_regions": {
                 "type": "array",
                 "items": {
                   "oneOf": [
@@ -20304,18 +20293,7 @@
                                 "geoArea": {
                                   "$ref": "#/components/schemas/CommonGeoAreaComponent"
                                 },
-                                "region": {
-                                  "type": "object",
-                                  "properties": {
-                                    "id": {
-                                      "type": "number"
-                                    },
-                                    "documentId": {
-                                      "type": "string"
-                                    }
-                                  }
-                                },
-                                "PaarenRregion": {
+                                "parent_regions": {
                                   "type": "array",
                                   "items": {
                                     "type": "object",
@@ -20985,6 +20963,9 @@
                 "hasCafe": {
                   "type": "boolean"
                 },
+                "DutchieStoreID": {
+                  "type": "string"
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -21098,18 +21079,7 @@
           "geoArea": {
             "$ref": "#/components/schemas/CommonGeoAreaComponent"
           },
-          "region": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "number"
-              },
-              "documentId": {
-                "type": "string"
-              }
-            }
-          },
-          "PaarenRregion": {
+          "parent_regions": {
             "type": "array",
             "items": {
               "type": "object",
@@ -22187,6 +22157,9 @@
               },
               "hasCafe": {
                 "type": "boolean"
+              },
+              "DutchieStoreID": {
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -24007,18 +23980,7 @@
                             "geoArea": {
                               "$ref": "#/components/schemas/CommonGeoAreaComponent"
                             },
-                            "region": {
-                              "type": "object",
-                              "properties": {
-                                "id": {
-                                  "type": "number"
-                                },
-                                "documentId": {
-                                  "type": "string"
-                                }
-                              }
-                            },
-                            "PaarenRregion": {
+                            "parent_regions": {
                               "type": "array",
                               "items": {
                                 "type": "object",
@@ -24460,6 +24422,9 @@
                         },
                         "hasCafe": {
                           "type": "boolean"
+                        },
+                        "DutchieStoreID": {
+                          "type": "string"
                         },
                         "createdAt": {
                           "type": "string",
@@ -25132,6 +25097,9 @@
           },
           "hasCafe": {
             "type": "boolean"
+          },
+          "DutchieStoreID": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
