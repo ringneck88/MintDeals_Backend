@@ -64,6 +64,22 @@ if (!process.env.DATABASE_URL && !process.env.DATABASE_HOST) {
   console.log('   Add PostgreSQL service in Railway for production use!');
 }
 
+// Check Cloudinary configuration
+console.log('\nCloudinary Configuration:');
+console.log('CLOUDINARY_NAME:', process.env.CLOUDINARY_NAME || 'NOT SET ❌');
+console.log('CLOUDINARY_KEY:', process.env.CLOUDINARY_KEY ? `${process.env.CLOUDINARY_KEY.substring(0, 6)}... ✅` : 'NOT SET ❌');
+console.log('CLOUDINARY_SECRET:', process.env.CLOUDINARY_SECRET ? `${process.env.CLOUDINARY_SECRET.substring(0, 6)}... ✅` : 'NOT SET ❌');
+
+if (!process.env.CLOUDINARY_NAME || !process.env.CLOUDINARY_KEY || !process.env.CLOUDINARY_SECRET) {
+  console.error('\n❌ WARNING: Cloudinary is not fully configured!');
+  console.error('   Image uploads will fail. Please set these in Railway:');
+  if (!process.env.CLOUDINARY_NAME) console.error('   - CLOUDINARY_NAME');
+  if (!process.env.CLOUDINARY_KEY) console.error('   - CLOUDINARY_KEY');
+  if (!process.env.CLOUDINARY_SECRET) console.error('   - CLOUDINARY_SECRET');
+} else {
+  console.log('✅ Cloudinary appears to be configured correctly');
+}
+
 console.log('\n=================================');
 console.log('Starting Strapi...');
 console.log('=================================\n');

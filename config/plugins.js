@@ -58,9 +58,11 @@ module.exports = ({ env }) => ({
             api_secret: env('CLOUDINARY_SECRET'),
           },
           actionOptions: {
-            upload: {},
+            upload: {
+              folder: env('CLOUDINARY_FOLDER', 'mintdeals'),
+            },
             uploadStream: {
-              folder: 'mintdeals',
+              folder: env('CLOUDINARY_FOLDER', 'mintdeals'),
             },
             delete: {},
           },
