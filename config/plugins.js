@@ -59,6 +59,9 @@ module.exports = ({ env }) => ({
           },
           actionOptions: {
             upload: {},
+            uploadStream: {
+              folder: 'mintdeals',
+            },
             delete: {},
           },
         },
