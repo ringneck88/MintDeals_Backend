@@ -5,11 +5,24 @@
 Copy and paste these EXACTLY as shown (NO SPACES around = signs) into Railway's Variables section:
 
 ### 1. Cloudinary Configuration
+
+**IMPORTANT: You MUST get these from YOUR Cloudinary account!**
+
+To get your actual credentials:
+1. Go to https://cloudinary.com/console and login
+2. On the Dashboard, find the "Account Details" or "Product Environment Credentials" section
+3. Copy these EXACTLY (no spaces):
+   - **Cloud name** (example: `dxyz123abc` or `your-app-name`)
+   - **API Key** (15-digit number, example: `123456789012345`)
+   - **API Secret** (27-character string, example: `AbCdEfGhIjKlMnOpQrStUvWxYz1`)
+
 ```
-CLOUDINARY_NAME=Root
-CLOUDINARY_KEY=387245489575974
-CLOUDINARY_SECRET=FCouQGTn49tH9dttYxhxAZ1zUH8
+CLOUDINARY_NAME=your_actual_cloud_name_here
+CLOUDINARY_KEY=your_actual_api_key_here
+CLOUDINARY_SECRET=your_actual_api_secret_here
 ```
+
+**DO NOT use the placeholder values above! Use YOUR credentials from cloudinary.com**
 
 ### 2. Strapi Security Keys
 ```
@@ -91,16 +104,23 @@ CLOUDINARY_SECRET=FCouQGTn49tH9dttYxhxAZ1zUH8
 - Solution: Copy variables again into Railway Raw Editor, ensure no spaces around `=`
 - Click "Deploy" button after saving to trigger a fresh deployment
 
-**Issue: Variables are set but uploads still fail**
-- Check Cloudinary dashboard (cloudinary.com) to verify:
-  - Cloud name is exactly "Root" (capital R)
-  - API credentials are active and not restricted
-  - Account is not suspended or over quota
+**Issue: "Invalid cloud_name" or "Missing or invalid credentials"**
+1. Your credentials are NOT correct. Don't assume they're right - verify them:
+   - Go to https://cloudinary.com/console
+   - Login to YOUR account
+   - Copy credentials from the Dashboard "Account Details" section
+   - ALL THREE must be from the SAME Cloudinary account
+2. Run verification script locally: `node scripts/verify-cloudinary.js`
+3. Check for hidden spaces or typos in Railway variables
+4. Try regenerating API credentials in Cloudinary:
+   - Go to Settings → Security → API Keys
+   - Generate a new API Key/Secret pair
+   - Update Railway with the NEW credentials
 
-**Issue: Error says "Invalid cloud_name"**
-- Your CLOUDINARY_NAME must match your Cloudinary account name exactly
-- Login to cloudinary.com and check your cloud name in Settings → Account
-- If it's different from "Root", update the Railway variable to match
+**Issue: "Authentication failed" or 401 errors**
+- API Secret is incorrect or has extra spaces
+- Copy the secret again from Cloudinary dashboard
+- In Railway, delete the old CLOUDINARY_SECRET variable and create a new one
 
 ### Step 4: Test After Fixing
 1. Redeploy in Railway after setting variables
