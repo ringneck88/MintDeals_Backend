@@ -6,23 +6,21 @@ Copy and paste these EXACTLY as shown (NO SPACES around = signs) into Railway's 
 
 ### 1. Cloudinary Configuration
 
-**IMPORTANT: You MUST get these from YOUR Cloudinary account!**
+**Get your API Key and API Secret from Cloudinary dashboard at https://cloudinary.com/console**
 
-To get your actual credentials:
-1. Go to https://cloudinary.com/console and login
+```
+CLOUDINARY_NAME=mint
+CLOUDINARY_KEY=your_actual_api_key_from_cloudinary
+CLOUDINARY_SECRET=your_actual_api_secret_from_cloudinary
+```
+
+**To get API Key and Secret:**
+1. Login to https://cloudinary.com/console
 2. On the Dashboard, find the "Account Details" or "Product Environment Credentials" section
 3. Copy these EXACTLY (no spaces):
-   - **Cloud name** (example: `dxyz123abc` or `your-app-name`)
-   - **API Key** (15-digit number, example: `123456789012345`)
-   - **API Secret** (27-character string, example: `AbCdEfGhIjKlMnOpQrStUvWxYz1`)
-
-```
-CLOUDINARY_NAME=your_actual_cloud_name_here
-CLOUDINARY_KEY=your_actual_api_key_here
-CLOUDINARY_SECRET=your_actual_api_secret_here
-```
-
-**DO NOT use the placeholder values above! Use YOUR credentials from cloudinary.com**
+   - **API Key** (15-digit number)
+   - **API Secret** (27-character alphanumeric string - click "Reveal" to see it)
+4. Paste them into Railway Variables tab
 
 ### 2. Strapi Security Keys
 ```

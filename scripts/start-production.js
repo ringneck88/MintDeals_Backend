@@ -66,9 +66,14 @@ if (!process.env.DATABASE_URL && !process.env.DATABASE_HOST) {
 
 // Check Cloudinary configuration
 console.log('\nCloudinary Configuration:');
-console.log('CLOUDINARY_NAME:', process.env.CLOUDINARY_NAME || 'NOT SET ❌');
+console.log('CLOUDINARY_NAME:', `"${process.env.CLOUDINARY_NAME}"` || 'NOT SET ❌');
+console.log('  Length:', process.env.CLOUDINARY_NAME?.length || 0, 'chars');
+console.log('  Exact value (JSON):', JSON.stringify(process.env.CLOUDINARY_NAME));
 console.log('CLOUDINARY_KEY:', process.env.CLOUDINARY_KEY ? `${process.env.CLOUDINARY_KEY.substring(0, 6)}... ✅` : 'NOT SET ❌');
+console.log('  Length:', process.env.CLOUDINARY_KEY?.length || 0, 'chars (should be ~15)');
 console.log('CLOUDINARY_SECRET:', process.env.CLOUDINARY_SECRET ? `${process.env.CLOUDINARY_SECRET.substring(0, 6)}... ✅` : 'NOT SET ❌');
+console.log('  Length:', process.env.CLOUDINARY_SECRET?.length || 0, 'chars (should be ~27)');
+console.log('  Has spaces:', /\s/.test(process.env.CLOUDINARY_SECRET || ''));
 
 if (!process.env.CLOUDINARY_NAME || !process.env.CLOUDINARY_KEY || !process.env.CLOUDINARY_SECRET) {
   console.error('\n❌ WARNING: Cloudinary is not fully configured!');
