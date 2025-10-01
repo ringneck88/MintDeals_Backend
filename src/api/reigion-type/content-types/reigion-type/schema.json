@@ -4,7 +4,7 @@
   "info": {
     "singularName": "reigion-type",
     "pluralName": "reigion-types",
-    "displayName": "Reigion type"
+    "displayName": "Region type"
   },
   "options": {
     "draftAndPublish": true

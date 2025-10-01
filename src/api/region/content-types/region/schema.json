@@ -17,75 +17,23 @@
       "maxLength": 100,
       "required": true
     },
-    "code": {
-      "type": "enumeration",
-      "required": true,
-      "enum": [
-        "AL",
-        "AK",
-        "AZ",
-        "AR",
-        "CA",
-        "CO",
-        "CT",
-        "DE",
-        "FL",
-        "GA",
-        "HI",
-        "ID",
-        "IL",
-        "IN",
-        "IA",
-        "KS",
-        "KY",
-        "LA",
-        "ME",
-        "MD",
-        "MA",
-        "MI",
-        "MN",
-        "MS",
-        "MO",
-        "MT",
-        "NE",
-        "NV",
-        "NH",
-        "NJ",
-        "NM",
-        "NY",
-        "NC",
-        "ND",
-        "OH",
-        "OK",
-        "OR",
-        "PA",
-        "RI",
-        "SC",
-        "SD",
-        "TN",
-        "TX",
-        "UT",
-        "VT",
-        "VA",
-        "WA",
-        "WV",
-        "WI",
-        "WY"
-      ]
+    "parent_regions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::region.region"
+    },
+    "region_type": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::reigion-type.reigion-type"
     },
     "timezone": {
       "type": "string",
       "default": "America/New_York"
     },
-    "age_restriction": {
-      "type": "integer",
-      "default": 21,
-      "min": 18,
-      "max": 25
-    },
-    "legal_disclaimer": {
+    "geoArea": {
       "type": "component",
-      "component": "legal.disclaimer",
+      "component": "common.geo-area",
       "repeatable": false
     },
     "stores": {
@@ -100,12 +48,6 @@
       "target": "api::promotion.promotion",
       "mappedBy": "regions"
     },
-    "compliance_policies": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::compliance-policy.compliance-policy",
-      "mappedBy": "region"
-    },
     "events": {
       "type": "relation",
       "relation": "oneToMany",
@@ -118,15 +60,11 @@
       "target": "api::announcement.announcement",
       "mappedBy": "regions"
     },
-    "geoArea": {
-      "type": "component",
-      "component": "common.geo-area",
-      "repeatable": false
-    },
-    "parent_regions": {
+    "compliance_policies": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::region.region"
+      "target": "api::compliance-policy.compliance-policy",
+      "mappedBy": "region"
     }
   }
 }
