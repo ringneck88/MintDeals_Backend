@@ -1,0 +1,41 @@
+{
+  "collectionName": "components_ui_two_column_image_block_with_texts",
+  "info": {
+    "displayName": "TwoColumnImageBlockWithText",
+    "icon": "picture"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "ImageTitle": {
+      "type": "string"
+    },
+    "ImageAlttext": {
+      "type": "text"
+    },
+    "Text": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "ImageOnRight": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

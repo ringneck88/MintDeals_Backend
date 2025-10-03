@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-01T14:04:47.722Z"
+    "x-generation-date": "2025-10-03T21:02:28.142Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -16488,6 +16488,12 @@
           "data": {
             "type": "object",
             "properties": {
+              "Title": {
+                "type": "string"
+              },
+              "GlobalDiscountPolicy": {
+                "type": "string"
+              },
               "locale": {
                 "type": "string"
               },
@@ -16551,6 +16557,12 @@
             "type": "number"
           },
           "documentId": {
+            "type": "string"
+          },
+          "Title": {
+            "type": "string"
+          },
+          "GlobalDiscountPolicy": {
             "type": "string"
           },
           "createdAt": {
@@ -16851,6 +16863,12 @@
                   "type": "number"
                 },
                 "documentId": {
+                  "type": "string"
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "GlobalDiscountPolicy": {
                   "type": "string"
                 },
                 "createdAt": {
@@ -16929,6 +16947,12 @@
           "data": {
             "type": "object",
             "properties": {
+              "Title": {
+                "type": "string"
+              },
+              "GlobalPrivacyStatement": {
+                "type": "string"
+              },
               "locale": {
                 "type": "string"
               },
@@ -16992,6 +17016,12 @@
             "type": "number"
           },
           "documentId": {
+            "type": "string"
+          },
+          "Title": {
+            "type": "string"
+          },
+          "GlobalPrivacyStatement": {
             "type": "string"
           },
           "createdAt": {
@@ -17292,6 +17322,12 @@
                   "type": "number"
                 },
                 "documentId": {
+                  "type": "string"
+                },
+                "Title": {
+                  "type": "string"
+                },
+                "GlobalPrivacyStatement": {
                   "type": "string"
                 },
                 "createdAt": {
@@ -17370,6 +17406,15 @@
           "data": {
             "type": "object",
             "properties": {
+              "Title": {
+                "type": "string"
+              },
+              "Contest": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/CommonContestTitleComponent"
+                }
+              },
               "locale": {
                 "type": "string"
               },
@@ -17434,6 +17479,15 @@
           },
           "documentId": {
             "type": "string"
+          },
+          "Title": {
+            "type": "string"
+          },
+          "Contest": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CommonContestTitleComponent"
+            }
           },
           "createdAt": {
             "type": "string",
@@ -17735,6 +17789,15 @@
                 "documentId": {
                   "type": "string"
                 },
+                "Title": {
+                  "type": "string"
+                },
+                "Contest": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CommonContestTitleComponent"
+                  }
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -17799,6 +17862,20 @@
           },
           "meta": {
             "type": "object"
+          }
+        }
+      },
+      "CommonContestTitleComponent": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "ContestTitle": {
+            "type": "string"
+          },
+          "ContestLegalStatment": {
+            "type": "string"
           }
         }
       },

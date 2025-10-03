@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_ui_faqs",
+  "info": {
+    "displayName": "FAQ",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "Question": {
+      "type": "component",
+      "component": "ui.question",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

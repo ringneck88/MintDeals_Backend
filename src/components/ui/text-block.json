@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_ui_text_blocks",
+  "info": {
+    "displayName": "TextBlock",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "TextHTML": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    }
+  },
+  "config": {}
+}

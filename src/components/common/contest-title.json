@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_common_contest_titles",
+  "info": {
+    "displayName": "ContestTitle",
+    "icon": "handHeart"
+  },
+  "options": {},
+  "attributes": {
+    "ContestTitle": {
+      "type": "string"
+    },
+    "ContestLegalStatment": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    }
+  },
+  "config": {}
+}

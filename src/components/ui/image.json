@@ -1,12 +1,12 @@
 {
-  "collectionName": "components_ui_global_footers",
+  "collectionName": "components_ui_images",
   "info": {
-    "displayName": "Global Footer",
-    "icon": "arrowDown"
+    "displayName": "Image",
+    "icon": "picture"
   },
   "options": {},
   "attributes": {
-    "Logo": {
+    "Image": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -16,8 +16,11 @@
         "audios"
       ]
     },
-    "LogoLink": {
+    "ImageTitle": {
       "type": "string"
+    },
+    "ImageAltTag": {
+      "type": "text"
     }
   },
   "config": {}

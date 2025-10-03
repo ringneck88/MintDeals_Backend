@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_ui_question_s",
+  "info": {
+    "displayName": "Question ",
+    "icon": "key"
+  },
+  "options": {},
+  "attributes": {
+    "Question": {
+      "type": "string"
+    },
+    "Answer": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}
