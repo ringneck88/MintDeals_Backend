@@ -3,12 +3,14 @@
 module.exports = {
   register({ strapi }) {
     // Check environment variables on startup
+    console.log('=== Strapi Register Called ===');
     const envCheck = require('../config/env-check');
     const isValid = envCheck();
 
     if (!isValid && process.env.NODE_ENV === 'production') {
       strapi.log.warn('Missing required environment variables in production!');
     }
+    console.log('=== Strapi Register Completed ===');
   },
 
   bootstrap({ strapi }) {

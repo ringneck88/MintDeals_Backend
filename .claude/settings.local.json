@@ -1,7 +1,13 @@
 {
   "permissions": {
     "allow": [
-      "Bash(docker exec flmintdeal-postgres bash -c \"PGPASSWORD=''krbHBYJkGXmrwUtxfzDcEXSJRzppnDll'' pg_dump -h postgres.railway.internal -U postgres -d railway -Fc -f /var/lib/postgresql/data/railway_backup.dump\")"
+      "Bash(docker exec flmintdeal-postgres bash -c \"PGPASSWORD=''krbHBYJkGXmrwUtxfzDcEXSJRzppnDll'' pg_dump -h postgres.railway.internal -U postgres -d railway -Fc -f /var/lib/postgresql/data/railway_backup.dump\")",
+      "Bash(npx strapi:*)",
+      "Bash(NODE_ENV=development npm run develop)",
+      "Bash(node:*)",
+      "Bash(npm:*)",
+      "Bash(cat:*)",
+      "Bash(docker exec:*)"
     ],
     "deny": [],
     "ask": []

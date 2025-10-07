@@ -65,6 +65,16 @@
       "relation": "oneToMany",
       "target": "api::compliance-policy.compliance-policy",
       "mappedBy": "region"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
