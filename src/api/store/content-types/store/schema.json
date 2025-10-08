@@ -64,14 +64,12 @@
       "required": true
     },
     "geo": {
-      "type": "component",
+      "type": "json",
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "component": "common.geo-point",
-      "repeatable": false
+      }
     },
     "phone": {
       "type": "string",
