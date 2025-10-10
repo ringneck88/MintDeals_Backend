@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dosing_brands",
+  "info": {
+    "singularName": "dosing-brand",
+    "pluralName": "dosing-brands",
+    "displayName": "Dosing Brand"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "brand_name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "brand_name"
+    }
+  }
+}

@@ -32,6 +32,11 @@
         "videos",
         "audios"
       ]
+    },
+    "brands": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::brand.brand"
     }
   }
 }
