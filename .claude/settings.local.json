@@ -8,7 +8,10 @@
       "Bash(npm:*)",
       "Bash(cat:*)",
       "Bash(docker exec:*)",
-      "WebSearch"
+      "WebSearch",
+      "Bash(npx @railway/cli:*)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://mintdealsbackend-production.up.railway.app/_health)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" https://mintdealsbackend-production.up.railway.app)"
     ],
     "deny": [],
     "ask": []

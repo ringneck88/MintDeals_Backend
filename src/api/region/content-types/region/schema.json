@@ -75,6 +75,11 @@
         "videos",
         "audios"
       ]
+    },
+    "seo": {
+      "type": "component",
+      "component": "seo.meta",
+      "repeatable": true
     }
   }
 }

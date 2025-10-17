@@ -19,14 +19,14 @@
       "min": 0,
       "max": 500
     },
-    "unite": {
+    "unit": {
       "type": "enumeration",
       "enum": [
         "Gram",
         "onuce",
         "Pound",
-        "Millitter",
-        "Milligram"
+        "ML",
+        "ml"
       ]
     },
     "Per": {

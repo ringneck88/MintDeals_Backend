@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-10T23:03:51.080Z"
+    "x-generation-date": "2025-10-17T20:10:33.736Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -14632,14 +14632,14 @@
             "type": "number",
             "format": "float"
           },
-          "unite": {
+          "unit": {
             "type": "string",
             "enum": [
               "Gram",
               "onuce",
               "Pound",
-              "Millitter",
-              "Milligram"
+              "ML",
+              "ml"
             ]
           },
           "Per": {
@@ -20417,6 +20417,12 @@
                 ],
                 "example": "string or id"
               },
+              "seo": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/SeoMetaComponent"
+                }
+              },
               "locale": {
                 "type": "string"
               },
@@ -23042,6 +23048,12 @@
                     }
                   }
                 },
+                "seo": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SeoMetaComponent"
+                  }
+                },
                 "createdAt": {
                   "type": "string",
                   "format": "date-time"
@@ -23310,6 +23322,12 @@
                   }
                 }
               }
+            }
+          },
+          "seo": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SeoMetaComponent"
             }
           },
           "createdAt": {
@@ -26303,6 +26321,12 @@
                                     }
                                   }
                                 }
+                              }
+                            },
+                            "seo": {
+                              "type": "array",
+                              "items": {
+                                "$ref": "#/components/schemas/SeoMetaComponent"
                               }
                             },
                             "createdAt": {
