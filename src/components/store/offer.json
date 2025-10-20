@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_store_offers",
+  "info": {
+    "displayName": "Offer",
+    "description": "Store offers and deals"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": false
+    },
+    "discount_type": {
+      "type": "enumeration",
+      "enum": [
+        "percentage",
+        "fixed_amount",
+        "bogo",
+        "other"
+      ]
+    },
+    "discount_value": {
+      "type": "string"
+    },
+    "valid_from": {
+      "type": "date"
+    },
+    "valid_until": {
+      "type": "date"
+    },
+    "terms": {
+      "type": "text"
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

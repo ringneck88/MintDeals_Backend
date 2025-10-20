@@ -79,7 +79,7 @@
     "seo": {
       "type": "component",
       "component": "seo.meta",
-      "repeatable": true
+      "repeatable": false
     }
   }
 }

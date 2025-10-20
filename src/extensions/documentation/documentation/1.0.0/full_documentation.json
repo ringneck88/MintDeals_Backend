@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-10-17T20:10:33.736Z"
+    "x-generation-date": "2025-10-17T20:31:46.037Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -20418,10 +20418,7 @@
                 "example": "string or id"
               },
               "seo": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/SeoMetaComponent"
-                }
+                "$ref": "#/components/schemas/SeoMetaComponent"
               },
               "locale": {
                 "type": "string"
@@ -23049,10 +23046,7 @@
                   }
                 },
                 "seo": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/SeoMetaComponent"
-                  }
+                  "$ref": "#/components/schemas/SeoMetaComponent"
                 },
                 "createdAt": {
                   "type": "string",
@@ -23325,10 +23319,7 @@
             }
           },
           "seo": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SeoMetaComponent"
-            }
+            "$ref": "#/components/schemas/SeoMetaComponent"
           },
           "createdAt": {
             "type": "string",
@@ -26324,10 +26315,7 @@
                               }
                             },
                             "seo": {
-                              "type": "array",
-                              "items": {
-                                "$ref": "#/components/schemas/SeoMetaComponent"
-                              }
+                              "$ref": "#/components/schemas/SeoMetaComponent"
                             },
                             "createdAt": {
                               "type": "string",
