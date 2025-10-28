@@ -17,6 +17,10 @@
       "maxLength": 100,
       "required": true
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
     "parent_regions": {
       "type": "relation",
       "relation": "oneToMany",
@@ -27,6 +31,12 @@
       "relation": "oneToOne",
       "target": "api::reigion-type.reigion-type"
     },
+    "stores": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::store.store",
+      "mappedBy": "region"
+    },
     "timezone": {
       "type": "string",
       "default": "America/New_York"
@@ -35,12 +45,6 @@
       "type": "component",
       "component": "common.geo-area",
       "repeatable": false
-    },
-    "stores": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::store.store",
-      "mappedBy": "region"
     },
     "promotions": {
       "type": "relation",
