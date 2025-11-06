@@ -30,7 +30,8 @@ module.exports = [
     },
     'strapi::cors',
     'strapi::poweredBy',
-    'strapi::logger',
+    // Disable logger in production to avoid Railway rate limits
+    ...(process.env.NODE_ENV === 'production' ? [] : ['strapi::logger']),
     'strapi::query',
     {
         name: 'strapi::body',
