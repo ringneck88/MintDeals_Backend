@@ -16,31 +16,22 @@ module.exports = () => {
     required.DATABASE_URL = process.env.DATABASE_URL;
   }
 
-  console.log('=== Environment Variables Check ===');
-  console.log('NODE_ENV:', process.env.NODE_ENV || 'not set');
-
   const missing = [];
   for (const [key, value] of Object.entries(required)) {
     if (!value) {
       missing.push(key);
-      console.log(`❌ ${key}: MISSING`);
-    } else {
-      console.log(`✅ ${key}: Set`);
     }
   }
 
-  if (missing.length > 0) {
-    console.error('\n⚠️  Missing required environment variables:', missing.join(', '));
-    console.error('Please set these in Railway dashboard or .env file');
-  } else {
-    console.log('\n✅ All required environment variables are set');
-  }
-
-  // Log Cloudinary config (without secrets)
-  if (process.env.CLOUDINARY_NAME) {
-    console.log('\nCloudinary Config:');
-    console.log('  Cloud Name:', process.env.CLOUDINARY_NAME);
-    console.log('  API Key:', process.env.CLOUDINARY_KEY ? `${process.env.CLOUDINARY_KEY.substring(0, 5)}...` : 'NOT SET');
+  // Only log in development or if there are missing vars
+  if (process.env.NODE_ENV === 'development') {
+    console.log('=== Environment Variables Check ===');
+    for (const [key, value] of Object.entries(required)) {
+      console.log(`${value ? '✅' : '❌'} ${key}: ${value ? 'Set' : 'MISSING'}`);
+    }
+    console.log(missing.length === 0 ? '\n✅ All env vars set' : '\n⚠️  Missing:', missing.join(', '));
+  } else if (missing.length > 0) {
+    console.error('⚠️  Missing env vars:', missing.join(', '));
   }
 
   return missing.length === 0;

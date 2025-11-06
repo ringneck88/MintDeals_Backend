@@ -9,8 +9,7 @@ module.exports = ({ env }) => {
   const appKeys = env.array('APP_KEYS') || defaultKeys;
 
   if (env('NODE_ENV') === 'production' && (!appKeys || appKeys.length === 0 || appKeys[0] === 'toBeModified1')) {
-    console.error('WARNING: APP_KEYS not properly configured for production!');
-    console.error('Please set APP_KEYS environment variable with secure random keys.');
+    console.error('⚠️  APP_KEYS not configured for production!');
   }
 
   return {
@@ -18,6 +17,10 @@ module.exports = ({ env }) => {
     port: env.int('PORT', 1337),
     app: {
       keys: appKeys,
+    },
+    // Disable unnecessary logging for production
+    logger: {
+      level: env('NODE_ENV') === 'production' ? 'error' : 'debug',
     },
     webhooks: {
       populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
