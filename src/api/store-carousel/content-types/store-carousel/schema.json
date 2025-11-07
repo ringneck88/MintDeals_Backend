@@ -35,7 +35,7 @@
       "inversedBy": "store_carousels"
     },
     "full_embed_script": {
-      "type": "string"
+      "type": "text"
     }
   }
 }
