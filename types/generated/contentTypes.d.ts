@@ -377,7 +377,7 @@ export interface ApiAnnouncementAnnouncement
   extends Struct.CollectionTypeSchema {
   collectionName: 'announcements';
   info: {
-    description: 'Store notices and alerts';
+    description: 'Store announcements and important notices';
     displayName: 'Announcement';
     pluralName: 'announcements';
     singularName: 'announcement';
@@ -386,30 +386,50 @@ export interface ApiAnnouncementAnnouncement
     draftAndPublish: true;
   };
   attributes: {
-    body: Schema.Attribute.RichText & Schema.Attribute.Required;
+    announcement_type: Schema.Attribute.Enumeration<
+      [
+        'general',
+        'hours_change',
+        'closure',
+        'new_product',
+        'policy_update',
+        'maintenance',
+        'urgent',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'general'>;
+    brand: Schema.Attribute.Relation<'manyToOne', 'api::brand.brand'>;
+    content: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    end_at: Schema.Attribute.DateTime;
-    is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    description: Schema.Attribute.Text;
+    end_date: Schema.Attribute.DateTime;
+    featured_image: Schema.Attribute.Media<'images'>;
+    is_pinned: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::announcement.announcement'
     > &
       Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    regions: Schema.Attribute.Relation<'manyToMany', 'api::region.region'>;
-    severity: Schema.Attribute.Enumeration<['info', 'warning', 'urgent']> &
-      Schema.Attribute.DefaultTo<'info'>;
-    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
-    start_at: Schema.Attribute.DateTime & Schema.Attribute.Required;
-    stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
-    title: Schema.Attribute.String &
+    name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 200;
       }>;
+    priority: Schema.Attribute.Enumeration<
+      ['low', 'normal', 'high', 'urgent']
+    > &
+      Schema.Attribute.DefaultTo<'normal'>;
+    publishedAt: Schema.Attribute.DateTime;
+    regions: Schema.Attribute.Relation<'manyToMany', 'api::region.region'>;
+    seo: Schema.Attribute.Component<'seo.meta', false>;
+    show_on_homepage: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    start_date: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -433,6 +453,7 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     default_seo: Schema.Attribute.Component<'seo.meta', false>;
     events: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
+    Font: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::brand.brand'> &
       Schema.Attribute.Private;
@@ -458,14 +479,12 @@ export interface ApiBrandBrand extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiCannaboidTypeCannaboidType
-  extends Struct.CollectionTypeSchema {
-  collectionName: 'cannaboid_types';
+export interface ApiCategoryCategory extends Struct.CollectionTypeSchema {
+  collectionName: 'categories';
   info: {
-    description: 'Types of cannaboids (THC, CBD, etc.)';
-    displayName: 'Cannaboid Type';
-    pluralName: 'cannaboid-types';
-    singularName: 'cannaboid-type';
+    displayName: 'Category ';
+    pluralName: 'categories';
+    singularName: 'category';
   };
   options: {
     draftAndPublish: true;
@@ -474,55 +493,29 @@ export interface ApiCannaboidTypeCannaboidType
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Description: Schema.Attribute.Text;
-    dosage_products: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::dosage-product.dosage-product'
+    Discription: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    images_test: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
     >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::cannaboid-type.cannaboid-type'
+      'api::category.category'
     > &
       Schema.Attribute.Private;
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.String & Schema.Attribute.Unique;
-    Title: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiCityCity extends Struct.CollectionTypeSchema {
-  collectionName: 'cities';
-  info: {
-    description: 'Cities/markets for filtering stores';
-    displayName: 'City';
-    pluralName: 'cities';
-    singularName: 'city';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::city.city'> &
-      Schema.Attribute.Private;
-    name: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 100;
-      }>;
-    publishedAt: Schema.Attribute.DateTime;
-    region: Schema.Attribute.Relation<'manyToOne', 'api::region.region'>;
-    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
-    stores: Schema.Attribute.Relation<'oneToMany', 'api::store.store'>;
+    RichText: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    SEO: Schema.Attribute.Component<'seo.meta', false>;
+    slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -569,44 +562,10 @@ export interface ApiCompliancePolicyCompliancePolicy
   };
 }
 
-export interface ApiDealDeal extends Struct.CollectionTypeSchema {
-  collectionName: 'deals';
-  info: {
-    description: 'Deals and offers';
-    displayName: 'Deal';
-    pluralName: 'deals';
-    singularName: 'deal';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    category: Schema.Attribute.String;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    description: Schema.Attribute.Text;
-    discount: Schema.Attribute.Integer;
-    featured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::deal.deal'> &
-      Schema.Attribute.Private;
-    originalPrice: Schema.Attribute.Decimal;
-    price: Schema.Attribute.Decimal;
-    publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.UID<'title'>;
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiDosageFormDosageForm extends Struct.CollectionTypeSchema {
   collectionName: 'dosage_forms';
   info: {
-    description: 'Methods of cannabis product delivery';
-    displayName: 'Dosage Form';
+    displayName: 'Dosing Form';
     pluralName: 'dosage-forms';
     singularName: 'dosage-form';
   };
@@ -617,20 +576,123 @@ export interface ApiDosageFormDosageForm extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Description: Schema.Attribute.Text;
-    dosage_products: Schema.Attribute.Relation<
+    Discription: Schema.Attribute.Text;
+    dosing_brands: Schema.Attribute.Relation<
       'oneToMany',
-      'api::dosage-product.dosage-product'
+      'api::dosing-brand.dosing-brand'
     >;
-    Form_Image: Schema.Attribute.Media<'images'>;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::dosage-form.dosage-form'
     > &
       Schema.Attribute.Private;
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    SEO_Title_Slug: Schema.Attribute.String & Schema.Attribute.Unique;
+    Slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDosageIngredintDosageIngredint
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dosage_ingredints';
+  info: {
+    displayName: 'Dosing Ingredint';
+    pluralName: 'dosage-ingredints';
+    singularName: 'dosage-ingredint';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Discription: Schema.Attribute.Text;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dosage-ingredint.dosage-ingredint'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'Name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDosingBrandDosingBrand extends Struct.CollectionTypeSchema {
+  collectionName: 'dosing_brands';
+  info: {
+    displayName: 'Dosing Brand';
+    pluralName: 'dosing-brands';
+    singularName: 'dosing-brand';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    brand_name: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dosing-brand.dosing-brand'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'brand_name'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDosingGuildPageDosingGuildPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'dosing_guild_pages';
+  info: {
+    displayName: 'Dosing Guild Page';
+    pluralName: 'dosing-guild-pages';
+    singularName: 'dosing-guild-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dosing_forms: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dosage-form.dosage-form'
+    >;
+    dosing_products: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dosing-product.dosing-product'
+    >;
+    DosingGuideDiscription: Schema.Attribute.Text;
+    DosingGuideLogo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dosing-guild-page.dosing-guild-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'Title'> & Schema.Attribute.Required;
     Title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -638,49 +700,108 @@ export interface ApiDosageFormDosageForm extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiDosageProductDosageProduct
+export interface ApiDosingProductDosingProduct
   extends Struct.CollectionTypeSchema {
-  collectionName: 'dosage_products';
+  collectionName: 'dosing_products';
   info: {
-    description: 'Cannabis products with dosage information';
-    displayName: 'Dosage Product';
-    pluralName: 'dosage-products';
-    singularName: 'dosage-product';
+    displayName: 'Dosing Product';
+    pluralName: 'dosing-products';
+    singularName: 'dosing-product';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    cannaboid_type: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::cannaboid-type.cannaboid-type'
-    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Description: Schema.Attribute.Text;
-    dosage_form: Schema.Attribute.Relation<
-      'manyToOne',
+    Discription: Schema.Attribute.Text;
+    dosing_form: Schema.Attribute.Relation<
+      'oneToOne',
       'api::dosage-form.dosage-form'
     >;
-    image: Schema.Attribute.Media<'images'>;
-    ingredients: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::ingredient.ingredient'
+    dosing_ingredints: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dosage-ingredint.dosage-ingredint'
     >;
+    DosingPerDose: Schema.Attribute.Component<
+      'dosing.dosing-cannabinoids-per-dose',
+      true
+    >;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::dosage-product.dosage-product'
+      'api::dosing-product.dosing-product'
     > &
       Schema.Attribute.Private;
     Name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    Quanity: Schema.Attribute.Decimal;
-    unit_type: Schema.Attribute.Relation<
-      'manyToOne',
-      'api::unit-type.unit-type'
-    >;
+    Slug: Schema.Attribute.UID<'Name'> & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDutchieDiscountPageDutchieDiscountPage
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dutchie_discount_pages';
+  info: {
+    displayName: 'Dutchie Discount Page';
+    pluralName: 'dutchie-discount-pages';
+    singularName: 'dutchie-discount-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Discription: Schema.Attribute.Text;
+    DutchieDiscountScript: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dutchie-discount-page.dutchie-discount-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'Title'> & Schema.Attribute.Required;
+    Title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiDutcieMenuPageDutcieMenuPage
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dutcie_menu_pages';
+  info: {
+    displayName: 'Dutcie Menu Page';
+    pluralName: 'dutcie-menu-pages';
+    singularName: 'dutcie-menu-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Discription: Schema.Attribute.Text;
+    DutchieMenuScript: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dutcie-menu-page.dutcie-menu-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Slug: Schema.Attribute.UID<'Title'> & Schema.Attribute.Required;
+    Title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -703,78 +824,58 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    description: Schema.Attribute.RichText;
-    end_at: Schema.Attribute.DateTime;
-    hero_media: Schema.Attribute.Media<'images' | 'videos'>;
-    is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    description: Schema.Attribute.Text;
+    end_datetime: Schema.Attribute.DateTime;
+    event_type: Schema.Attribute.Enumeration<
+      [
+        'grand_opening',
+        'product_launch',
+        'educational',
+        'community',
+        'sale',
+        'other',
+      ]
+    > &
+      Schema.Attribute.DefaultTo<'other'>;
+    featured_image: Schema.Attribute.Media<'images'>;
+    gallery: Schema.Attribute.Media<'images' | 'videos', true>;
+    is_all_day: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    is_recurring: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::event.event'> &
       Schema.Attribute.Private;
-    location_override: Schema.Attribute.Component<'common.address', false>;
-    publishedAt: Schema.Attribute.DateTime;
-    region: Schema.Attribute.Relation<'manyToOne', 'api::region.region'>;
-    rsvp_url: Schema.Attribute.String;
-    seo: Schema.Attribute.Component<'seo.meta', false>;
-    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
-    start_at: Schema.Attribute.DateTime & Schema.Attribute.Required;
-    stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
-    title: Schema.Attribute.String &
+    max_attendees: Schema.Attribute.Integer;
+    name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 200;
       }>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiGlobalGlobal extends Struct.SingleTypeSchema {
-  collectionName: 'globals';
-  info: {
-    description: 'Global site configuration and settings';
-    displayName: 'Global';
-    pluralName: 'globals';
-    singularName: 'global';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  attributes: {
-    brands: Schema.Attribute.Relation<'oneToMany', 'api::brand.brand'>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    default_seo: Schema.Attribute.Component<'seo.meta', false>;
-    footer_nav: Schema.Attribute.Component<'ui.nav', false>;
-    header_nav: Schema.Attribute.Component<'ui.nav', false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::global.global'
-    > &
-      Schema.Attribute.Private;
-    primary_brand: Schema.Attribute.Relation<'oneToOne', 'api::brand.brand'>;
     publishedAt: Schema.Attribute.DateTime;
-    store_finder_settings: Schema.Attribute.Component<
-      'ui.store-finder-settings',
-      false
-    >;
-    support_links: Schema.Attribute.Component<'ui.link-list', false>;
-    tracking: Schema.Attribute.Component<'ops.tracking-ids', false>;
+    recurrence_pattern: Schema.Attribute.String &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    region: Schema.Attribute.Relation<'manyToOne', 'api::region.region'>;
+    registration_required: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    registration_url: Schema.Attribute.String;
+    seo: Schema.Attribute.Component<'seo.meta', false>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    start_datetime: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiIngredientIngredient extends Struct.CollectionTypeSchema {
-  collectionName: 'ingredients';
+export interface ApiGlobalAboutUsPageGlobalAboutUsPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'global_about_us_pages';
   info: {
-    description: 'Ingredients used in cannabis products';
-    displayName: 'Ingredient';
-    pluralName: 'ingredients';
-    singularName: 'ingredient';
+    displayName: 'Global About Us Page';
+    pluralName: 'global-about-us-pages';
+    singularName: 'global-about-us-page';
   };
   options: {
     draftAndPublish: true;
@@ -783,54 +884,197 @@ export interface ApiIngredientIngredient extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    Description: Schema.Attribute.Text;
-    dosage_products: Schema.Attribute.Relation<
-      'manyToMany',
-      'api::dosage-product.dosage-product'
-    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::ingredient.ingredient'
+      'api::global-about-us-page.global-about-us-page'
     > &
       Schema.Attribute.Private;
-    Name: Schema.Attribute.String & Schema.Attribute.Required;
     publishedAt: Schema.Attribute.DateTime;
-    slug: Schema.Attribute.String & Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiLegalLegal extends Struct.SingleTypeSchema {
-  collectionName: 'legals';
+export interface ApiGlobalAgeGateGlobalAgeGate extends Struct.SingleTypeSchema {
+  collectionName: 'global_age_gates';
   info: {
-    description: 'Legal pages and compliance content';
-    displayName: 'Legal';
-    pluralName: 'legals';
-    singularName: 'legal';
+    displayName: 'Global Age Gate';
+    pluralName: 'global-age-gates';
+    singularName: 'global-age-gate';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    accessibility_statement: Schema.Attribute.Blocks;
-    age_gate_text: Schema.Attribute.RichText;
-    ccpa_notice: Schema.Attribute.Blocks;
-    cookie_policy: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    gdpr_notice: Schema.Attribute.Blocks;
-    global_disclaimer: Schema.Attribute.RichText;
-    last_updated: Schema.Attribute.DateTime;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::legal.legal'> &
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-age-gate.global-age-gate'
+    > &
       Schema.Attribute.Private;
-    privacy_policy: Schema.Attribute.Blocks;
     publishedAt: Schema.Attribute.DateTime;
-    terms_of_use: Schema.Attribute.Blocks;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGlobalContactUsPageGlobalContactUsPage
+  extends Struct.SingleTypeSchema {
+  collectionName: 'global_contact_us_pages';
+  info: {
+    displayName: 'Global Contact Us Page';
+    pluralName: 'global-contact-us-pages';
+    singularName: 'global-contact-us-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-contact-us-page.global-contact-us-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGlobalDiscountPolicyGlobalDiscountPolicy
+  extends Struct.SingleTypeSchema {
+  collectionName: 'global_discount_policies';
+  info: {
+    displayName: 'Global Discount Policy';
+    pluralName: 'global-discount-policies';
+    singularName: 'global-discount-policy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    GlobalDiscountPolicy: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-discount-policy.global-discount-policy'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGlobalPrivacyStatmentGlobalPrivacyStatment
+  extends Struct.SingleTypeSchema {
+  collectionName: 'global_privacy_statments';
+  info: {
+    displayName: 'Global Privacy Statment';
+    pluralName: 'global-privacy-statments';
+    singularName: 'global-privacy-statment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    GlobalPrivacyStatement: Schema.Attribute.RichText &
+      Schema.Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'defaultHtml';
+        }
+      >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-privacy-statment.global-privacy-statment'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiGlobalPromotionalContestGlobalPromotionalContest
+  extends Struct.SingleTypeSchema {
+  collectionName: 'global_promotional_contests';
+  info: {
+    displayName: 'Global Promotional Contest Policy';
+    pluralName: 'global-promotional-contests';
+    singularName: 'global-promotional-contest';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Contest: Schema.Attribute.Component<'common.contest-title', true>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::global-promotional-contest.global-promotional-contest'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    Title: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
+  collectionName: 'home_pages';
+  info: {
+    displayName: 'Home Page';
+    pluralName: 'home-pages';
+    singularName: 'home-page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::home-page.home-page'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -841,7 +1085,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   collectionName: 'pages';
   info: {
     description: 'CMS pages with dynamic layouts';
-    displayName: 'Page';
+    displayName: 'Global Page';
     pluralName: 'pages';
     singularName: 'page';
   };
@@ -871,10 +1115,143 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiProductProduct extends Struct.CollectionTypeSchema {
+  collectionName: 'products';
+  info: {
+    description: 'Cannabis products from POS/menu systems';
+    displayName: 'Product';
+    pluralName: 'products';
+    singularName: 'product';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    brand: Schema.Attribute.Relation<'manyToOne', 'api::brand.brand'>;
+    category: Schema.Attribute.Relation<'manyToOne', 'api::category.category'>;
+    cbd_content: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    dutchie_product_id: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    image: Schema.Attribute.Media<'images'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    is_active: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 255;
+      }>;
+    pos_product_id: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    price: Schema.Attribute.Decimal &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    product_type: Schema.Attribute.Enumeration<
+      [
+        'flower',
+        'vaporizer',
+        'edible',
+        'concentrate',
+        'topical',
+        'tincture',
+        'pre-roll',
+        'accessory',
+        'other',
+      ]
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    sku: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    slug: Schema.Attribute.UID<'name'>;
+    thc_content: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 50;
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPromotionPromotion extends Struct.CollectionTypeSchema {
   collectionName: 'promotions';
   info: {
-    description: 'Marketing promotions and deals';
+    description: 'Promotional offers and deals for brands and stores';
     displayName: 'Promotion';
     pluralName: 'promotions';
     singularName: 'promotion';
@@ -884,22 +1261,17 @@ export interface ApiPromotionPromotion extends Struct.CollectionTypeSchema {
   };
   attributes: {
     brand: Schema.Attribute.Relation<'manyToOne', 'api::brand.brand'>;
-    content: Schema.Attribute.RichText;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    creative: Schema.Attribute.Media<'images' | 'videos'>;
-    days_of_week: Schema.Attribute.JSON;
-    eligible_customer_types: Schema.Attribute.Enumeration<
-      ['all', 'new', 'loyalty', 'medical', 'recreational']
+    description: Schema.Attribute.Text;
+    discount_type: Schema.Attribute.Enumeration<
+      ['percentage', 'fixed_amount', 'bogo', 'free_item', 'other']
     > &
-      Schema.Attribute.DefaultTo<['all']>;
-    end_at: Schema.Attribute.DateTime;
-    exclude_stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
-    external_campaign_id: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 100;
-      }>;
+      Schema.Attribute.DefaultTo<'percentage'>;
+    discount_value: Schema.Attribute.Decimal;
+    end_date: Schema.Attribute.DateTime;
+    featured_image: Schema.Attribute.Media<'images'>;
     is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -907,32 +1279,19 @@ export interface ApiPromotionPromotion extends Struct.CollectionTypeSchema {
       'api::promotion.promotion'
     > &
       Schema.Attribute.Private;
-    min_age: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 25;
-          min: 18;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<21>;
-    priority: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
-    publishedAt: Schema.Attribute.DateTime;
-    regions: Schema.Attribute.Relation<'manyToMany', 'api::region.region'>;
-    seo: Schema.Attribute.Component<'seo.meta', false>;
-    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
-    start_at: Schema.Attribute.DateTime & Schema.Attribute.Required;
-    store: Schema.Attribute.Relation<'manyToOne', 'api::store.store'>;
-    summary: Schema.Attribute.Text &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 500;
-      }>;
-    terms: Schema.Attribute.Component<'legal.terms', false>;
-    title: Schema.Attribute.String &
+    minimum_purchase: Schema.Attribute.Decimal;
+    name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 200;
       }>;
+    publishedAt: Schema.Attribute.DateTime;
+    regions: Schema.Attribute.Relation<'manyToMany', 'api::region.region'>;
+    seo: Schema.Attribute.Component<'seo.meta', false>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    start_date: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    store: Schema.Attribute.Relation<'manyToOne', 'api::store.store'>;
+    terms_conditions: Schema.Attribute.Text;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -951,75 +1310,10 @@ export interface ApiRegionRegion extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    age_restriction: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          max: 25;
-          min: 18;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<21>;
     announcements: Schema.Attribute.Relation<
       'manyToMany',
       'api::announcement.announcement'
     >;
-    cities: Schema.Attribute.Relation<'oneToMany', 'api::city.city'>;
-    code: Schema.Attribute.Enumeration<
-      [
-        'AL',
-        'AK',
-        'AZ',
-        'AR',
-        'CA',
-        'CO',
-        'CT',
-        'DE',
-        'FL',
-        'GA',
-        'HI',
-        'ID',
-        'IL',
-        'IN',
-        'IA',
-        'KS',
-        'KY',
-        'LA',
-        'ME',
-        'MD',
-        'MA',
-        'MI',
-        'MN',
-        'MS',
-        'MO',
-        'MT',
-        'NE',
-        'NV',
-        'NH',
-        'NJ',
-        'NM',
-        'NY',
-        'NC',
-        'ND',
-        'OH',
-        'OK',
-        'OR',
-        'PA',
-        'RI',
-        'SC',
-        'SD',
-        'TN',
-        'TX',
-        'UT',
-        'VT',
-        'VA',
-        'WA',
-        'WV',
-        'WI',
-        'WY',
-      ]
-    > &
-      Schema.Attribute.Required;
     compliance_policies: Schema.Attribute.Relation<
       'oneToMany',
       'api::compliance-policy.compliance-policy'
@@ -1027,9 +1321,9 @@ export interface ApiRegionRegion extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    delivery_rules: Schema.Attribute.Component<'ops.fulfillment-rules', false>;
     events: Schema.Attribute.Relation<'oneToMany', 'api::event.event'>;
-    legal_disclaimer: Schema.Attribute.Component<'legal.disclaimer', false>;
+    geoArea: Schema.Attribute.Component<'common.geo-area', false>;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1041,15 +1335,120 @@ export interface ApiRegionRegion extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 100;
       }>;
+    parent_regions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::region.region'
+    >;
     promotions: Schema.Attribute.Relation<
       'manyToMany',
       'api::promotion.promotion'
     >;
     publishedAt: Schema.Attribute.DateTime;
+    region_type: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::reigion-type.reigion-type'
+    >;
+    seo: Schema.Attribute.Component<'seo.meta', false>;
+    slug: Schema.Attribute.UID<'name'>;
     stores: Schema.Attribute.Relation<'oneToMany', 'api::store.store'>;
-    tax_profile: Schema.Attribute.Component<'commerce.tax-profile', false>;
     timezone: Schema.Attribute.String &
       Schema.Attribute.DefaultTo<'America/New_York'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiReigionTypeReigionType extends Struct.CollectionTypeSchema {
+  collectionName: 'reigion_types';
+  info: {
+    displayName: 'Region type';
+    pluralName: 'reigion-types';
+    singularName: 'reigion-type';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    Description: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::reigion-type.reigion-type'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStoreBannerStoreBanner extends Struct.CollectionTypeSchema {
+  collectionName: 'store_banners';
+  info: {
+    displayName: 'Store Banner';
+    pluralName: 'store-banners';
+    singularName: 'store-banner';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    banner: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    endDate: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::store-banner.store-banner'
+    > &
+      Schema.Attribute.Private;
+    Name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    startDate: Schema.Attribute.DateTime;
+    stores: Schema.Attribute.Relation<'oneToMany', 'api::store.store'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiStoreCarouselStoreCarousel
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'store_carousels';
+  info: {
+    description: 'Dutchie carousel embeds for stores';
+    displayName: 'Store Carousel';
+    pluralName: 'store-carousels';
+    singularName: 'store-carousel';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dutchie_carousel_id: Schema.Attribute.String & Schema.Attribute.Required;
+    full_embed_script: Schema.Attribute.String;
+    is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::store-carousel.store-carousel'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    store: Schema.Attribute.Relation<'manyToOne', 'api::store.store'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1091,11 +1490,22 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
       'api::announcement.announcement'
     >;
     brand: Schema.Attribute.Relation<'manyToOne', 'api::brand.brand'>;
-    city: Schema.Attribute.Relation<'manyToOne', 'api::city.city'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     cta_blocks: Schema.Attribute.Component<'ui.cta', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    dutchieApiKey: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    DutchieStoreID: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1114,7 +1524,13 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    geo: Schema.Attribute.Component<'common.geo-point', false> &
+    geo: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    hasCafe: Schema.Attribute.Boolean &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1135,7 +1551,7 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    hours: Schema.Attribute.Component<'common.hours', false> &
+    hours: Schema.Attribute.Component<'common.hours', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1148,6 +1564,24 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<true>;
+    isMedical: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    isRecreational: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    LicenseNumber: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::store.store'>;
     menu_url: Schema.Attribute.String &
@@ -1156,6 +1590,13 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    multi_location_selector: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<false>;
     name: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -1165,6 +1606,12 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
       }> &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 200;
+      }>;
+    offers: Schema.Attribute.Component<'store.offer', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
       }>;
     online_ordering_url: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
@@ -1181,6 +1628,22 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 20;
       }>;
+    popular_concentrates: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    >;
+    popular_edibles: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    >;
+    popular_flower: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    >;
+    popular_vaporizers: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product.product'
+    >;
     pos_location_id: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1196,6 +1659,7 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
     >;
     publishedAt: Schema.Attribute.DateTime;
     region: Schema.Attribute.Relation<'manyToOne', 'api::region.region'>;
+    secret_menu: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     seo: Schema.Attribute.Component<'seo.meta', false> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1209,6 +1673,11 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
         };
       }>;
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    staff_picks: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
+    store_carousels: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::store-carousel.store-carousel'
+    >;
     store_code: Schema.Attribute.String &
       Schema.Attribute.Unique &
       Schema.Attribute.SetPluginOptions<{
@@ -1219,13 +1688,6 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 50;
       }>;
-    testing: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     timezone: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1233,41 +1695,6 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<'America/New_York'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
-export interface ApiUnitTypeUnitType extends Struct.CollectionTypeSchema {
-  collectionName: 'unit_types';
-  info: {
-    description: 'Units of measurement for cannabis products';
-    displayName: 'Unit Type';
-    pluralName: 'unit-types';
-    singularName: 'unit-type';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    dosage_products: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::dosage-product.dosage-product'
-    >;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::unit-type.unit-type'
-    > &
-      Schema.Attribute.Private;
-    publishedAt: Schema.Attribute.DateTime;
-    unitType: Schema.Attribute.String &
-      Schema.Attribute.Required &
-      Schema.Attribute.Unique;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1785,21 +2212,31 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::brand.brand': ApiBrandBrand;
-      'api::cannaboid-type.cannaboid-type': ApiCannaboidTypeCannaboidType;
-      'api::city.city': ApiCityCity;
+      'api::category.category': ApiCategoryCategory;
       'api::compliance-policy.compliance-policy': ApiCompliancePolicyCompliancePolicy;
-      'api::deal.deal': ApiDealDeal;
       'api::dosage-form.dosage-form': ApiDosageFormDosageForm;
-      'api::dosage-product.dosage-product': ApiDosageProductDosageProduct;
+      'api::dosage-ingredint.dosage-ingredint': ApiDosageIngredintDosageIngredint;
+      'api::dosing-brand.dosing-brand': ApiDosingBrandDosingBrand;
+      'api::dosing-guild-page.dosing-guild-page': ApiDosingGuildPageDosingGuildPage;
+      'api::dosing-product.dosing-product': ApiDosingProductDosingProduct;
+      'api::dutchie-discount-page.dutchie-discount-page': ApiDutchieDiscountPageDutchieDiscountPage;
+      'api::dutcie-menu-page.dutcie-menu-page': ApiDutcieMenuPageDutcieMenuPage;
       'api::event.event': ApiEventEvent;
-      'api::global.global': ApiGlobalGlobal;
-      'api::ingredient.ingredient': ApiIngredientIngredient;
-      'api::legal.legal': ApiLegalLegal;
+      'api::global-about-us-page.global-about-us-page': ApiGlobalAboutUsPageGlobalAboutUsPage;
+      'api::global-age-gate.global-age-gate': ApiGlobalAgeGateGlobalAgeGate;
+      'api::global-contact-us-page.global-contact-us-page': ApiGlobalContactUsPageGlobalContactUsPage;
+      'api::global-discount-policy.global-discount-policy': ApiGlobalDiscountPolicyGlobalDiscountPolicy;
+      'api::global-privacy-statment.global-privacy-statment': ApiGlobalPrivacyStatmentGlobalPrivacyStatment;
+      'api::global-promotional-contest.global-promotional-contest': ApiGlobalPromotionalContestGlobalPromotionalContest;
+      'api::home-page.home-page': ApiHomePageHomePage;
       'api::page.page': ApiPagePage;
+      'api::product.product': ApiProductProduct;
       'api::promotion.promotion': ApiPromotionPromotion;
       'api::region.region': ApiRegionRegion;
+      'api::reigion-type.reigion-type': ApiReigionTypeReigionType;
+      'api::store-banner.store-banner': ApiStoreBannerStoreBanner;
+      'api::store-carousel.store-carousel': ApiStoreCarouselStoreCarousel;
       'api::store.store': ApiStoreStore;
-      'api::unit-type.unit-type': ApiUnitTypeUnitType;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

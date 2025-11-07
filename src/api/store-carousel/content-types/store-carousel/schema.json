@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "store_carousels",
+  "info": {
+    "singularName": "store-carousel",
+    "pluralName": "store-carousels",
+    "displayName": "Store Carousel",
+    "description": "Dutchie carousel embeds for stores"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "dutchie_carousel_id": {
+      "type": "string",
+      "required": true
+    },
+    "order": {
+      "type": "integer",
+      "default": 0
+    },
+    "is_active": {
+      "type": "boolean",
+      "default": true
+    },
+    "store": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::store.store",
+      "inversedBy": "store_carousels"
+    },
+    "full_embed_script": {
+      "type": "string"
+    }
+  }
+}

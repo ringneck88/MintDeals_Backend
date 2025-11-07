@@ -9,13 +9,11 @@
     "lat": {
       "type": "decimal",
       "required": true,
-      "min": -90,
       "max": 90
     },
     "long": {
       "type": "decimal",
       "required": true,
-      "min": -180,
       "max": 180
     }
   }

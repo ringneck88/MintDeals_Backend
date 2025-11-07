@@ -331,6 +331,12 @@
           "localized": true
         }
       }
+    },
+    "store_carousels": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::store-carousel.store-carousel",
+      "mappedBy": "store"
     }
   }
 }
