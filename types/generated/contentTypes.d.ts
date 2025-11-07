@@ -1437,7 +1437,7 @@ export interface ApiStoreCarouselStoreCarousel
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     dutchie_carousel_id: Schema.Attribute.String & Schema.Attribute.Required;
-    full_embed_script: Schema.Attribute.String;
+    full_embed_script: Schema.Attribute.Text;
     is_active: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
