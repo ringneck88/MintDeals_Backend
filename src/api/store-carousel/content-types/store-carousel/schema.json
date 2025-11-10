@@ -28,11 +28,10 @@
       "type": "boolean",
       "default": true
     },
-    "stores": {
+    "store": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::store.store",
-      "inversedBy": "store_carousels"
+      "relation": "oneToOne",
+      "target": "api::store.store"
     },
     "full_embed_script": {
       "type": "text"
