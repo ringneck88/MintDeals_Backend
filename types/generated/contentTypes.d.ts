@@ -1448,7 +1448,7 @@ export interface ApiStoreCarouselStoreCarousel
     name: Schema.Attribute.String & Schema.Attribute.Required;
     order: Schema.Attribute.Integer & Schema.Attribute.DefaultTo<0>;
     publishedAt: Schema.Attribute.DateTime;
-    store: Schema.Attribute.Relation<'manyToOne', 'api::store.store'>;
+    stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1675,7 +1675,7 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
     slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
     staff_picks: Schema.Attribute.Relation<'oneToMany', 'api::product.product'>;
     store_carousels: Schema.Attribute.Relation<
-      'oneToMany',
+      'manyToMany',
       'api::store-carousel.store-carousel'
     >;
     store_code: Schema.Attribute.String &

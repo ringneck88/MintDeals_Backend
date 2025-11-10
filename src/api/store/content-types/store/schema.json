@@ -334,9 +334,9 @@
     },
     "store_carousels": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::store-carousel.store-carousel",
-      "mappedBy": "store"
+      "mappedBy": "stores"
     }
   }
 }
