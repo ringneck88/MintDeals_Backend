@@ -1530,6 +1530,12 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    google_place_id: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     hasCafe: Schema.Attribute.Boolean &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

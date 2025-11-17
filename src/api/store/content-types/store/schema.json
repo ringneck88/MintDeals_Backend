@@ -331,6 +331,14 @@
           "localized": true
         }
       }
+    },
+    "google_place_id": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

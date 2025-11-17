@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-10T20:23:36.536Z"
+    "x-generation-date": "2025-11-17T23:34:34.111Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -24974,6 +24974,9 @@
                         "dutchieApiKey": {
                           "type": "string"
                         },
+                        "google_place_id": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -28958,6 +28961,9 @@
                       "dutchieApiKey": {
                         "type": "string"
                       },
+                      "google_place_id": {
+                        "type": "string"
+                      },
                       "createdAt": {
                         "type": "string",
                         "format": "date-time"
@@ -30364,6 +30370,9 @@
                 }
               },
               "dutchieApiKey": {
+                "type": "string"
+              },
+              "google_place_id": {
                 "type": "string"
               },
               "locale": {
@@ -33441,6 +33450,9 @@
                         "dutchieApiKey": {
                           "type": "string"
                         },
+                        "google_place_id": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -34208,6 +34220,9 @@
             }
           },
           "dutchieApiKey": {
+            "type": "string"
+          },
+          "google_place_id": {
             "type": "string"
           },
           "createdAt": {
@@ -37612,6 +37627,9 @@
                   }
                 },
                 "dutchieApiKey": {
+                  "type": "string"
+                },
+                "google_place_id": {
                   "type": "string"
                 },
                 "createdAt": {
@@ -41423,6 +41441,9 @@
                 }
               },
               "dutchieApiKey": {
+                "type": "string"
+              },
+              "google_place_id": {
                 "type": "string"
               },
               "createdAt": {
