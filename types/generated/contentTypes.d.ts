@@ -1115,6 +1115,53 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiProductDiscountProductDiscount
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'product_discounts';
+  info: {
+    description: 'Pairs products with their discounts from Dutchie';
+    displayName: 'Product Discount';
+    pluralName: 'product-discounts';
+    singularName: 'product-discount';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    discountBrand: Schema.Attribute.String;
+    discountDutchieId: Schema.Attribute.String & Schema.Attribute.Required;
+    discountEndTimestamp: Schema.Attribute.DateTime & Schema.Attribute.Required;
+    discountImageUrl: Schema.Attribute.String;
+    discountIsActive: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    discountName: Schema.Attribute.String & Schema.Attribute.Required;
+    discountStartTimestamp: Schema.Attribute.DateTime &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::product-discount.product-discount'
+    > &
+      Schema.Attribute.Private;
+    productBrand: Schema.Attribute.String;
+    productDescription: Schema.Attribute.Text;
+    productDutchieId: Schema.Attribute.String & Schema.Attribute.Required;
+    productImageUrl: Schema.Attribute.String;
+    productName: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    storeId: Schema.Attribute.String & Schema.Attribute.Required;
+    storeLocation: Schema.Attribute.String;
+    storeName: Schema.Attribute.String;
+    temp: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProductProduct extends Struct.CollectionTypeSchema {
   collectionName: 'products';
   info: {
@@ -2232,6 +2279,7 @@ declare module '@strapi/strapi' {
       'api::global-promotional-contest.global-promotional-contest': ApiGlobalPromotionalContestGlobalPromotionalContest;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::page.page': ApiPagePage;
+      'api::product-discount.product-discount': ApiProductDiscountProductDiscount;
       'api::product.product': ApiProductProduct;
       'api::promotion.promotion': ApiPromotionPromotion;
       'api::region.region': ApiRegionRegion;
