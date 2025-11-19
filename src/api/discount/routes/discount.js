@@ -6,4 +6,13 @@
 
 const { createCoreRouter } = require('@strapi/strapi').factories;
 
-module.exports = createCoreRouter('api::discount.discount');
+module.exports = createCoreRouter('api::discount.discount', {
+  config: {
+    find: {
+      auth: false,
+    },
+    findOne: {
+      auth: false,
+    },
+  },
+});
