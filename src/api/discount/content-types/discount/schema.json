@@ -120,6 +120,10 @@
     },
     "discountGroups": {
       "type": "json"
+    },
+    "stores": {
+      "type": "json",
+      "description": "Array of stores this discount applies to, each with storeId, storeName, and DutchieStoreID"
     }
   }
 }

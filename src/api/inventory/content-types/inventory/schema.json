@@ -181,6 +181,18 @@
     "isCannabis": {
       "type": "boolean",
       "default": true
+    },
+    "storeId": {
+      "type": "integer",
+      "description": "Strapi store ID this inventory belongs to"
+    },
+    "storeName": {
+      "type": "string",
+      "description": "Store name for easy reference"
+    },
+    "DutchieStoreID": {
+      "type": "string",
+      "description": "Dutchie retailer ID"
     }
   }
 }
