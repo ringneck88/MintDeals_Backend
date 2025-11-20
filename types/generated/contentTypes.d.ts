@@ -942,46 +942,35 @@ export interface ApiFaqQaFaqQa extends Struct.CollectionTypeSchema {
   collectionName: 'faq_qas';
   info: {
     description: 'Frequently Asked Questions for stores - can be global or store-specific';
-    displayName: 'FAQ Q&A';
+    displayName: 'FAQ QA';
     pluralName: 'faq-qas';
     singularName: 'faq-qa';
   };
   options: {
     draftAndPublish: true;
   };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
   attributes: {
-    answer: Schema.Attribute.RichText &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
+    answer: Schema.Attribute.RichText & Schema.Attribute.Required;
     category: Schema.Attribute.String &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 100;
       }>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    end_date: Schema.Attribute.DateTime;
     is_active: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<true>;
     is_global: Schema.Attribute.Boolean &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<false>;
-    locale: Schema.Attribute.String;
-    localizations: Schema.Attribute.Relation<'oneToMany', 'api::faq-qa.faq-qa'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::faq-qa.faq-qa'
+    > &
+      Schema.Attribute.Private;
     order: Schema.Attribute.Integer &
       Schema.Attribute.SetMinMax<
         {
@@ -990,17 +979,49 @@ export interface ApiFaqQaFaqQa extends Struct.CollectionTypeSchema {
         number
       > &
       Schema.Attribute.DefaultTo<0>;
+    published_date: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
     question: Schema.Attribute.Text &
       Schema.Attribute.Required &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }> &
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 500;
       }>;
+    slug: Schema.Attribute.UID<'question'>;
+    stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFaqqaFaqqa extends Struct.CollectionTypeSchema {
+  collectionName: 'faqqas';
+  info: {
+    displayName: 'Faqqa';
+    pluralName: 'faqqas';
+    singularName: 'faqqa';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    answer: Schema.Attribute.Blocks;
+    category: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    end_date: Schema.Attribute.DateTime;
+    is_active: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    is_global: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::faqqa.faqqa'> &
+      Schema.Attribute.Private;
+    order: Schema.Attribute.Integer;
+    Publish_date: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    question: Schema.Attribute.Text & Schema.Attribute.Required;
     slug: Schema.Attribute.UID<'question'>;
     stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
     updatedAt: Schema.Attribute.DateTime;
@@ -1794,6 +1815,7 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
       }>;
     events: Schema.Attribute.Relation<'manyToMany', 'api::event.event'>;
     faq_qas: Schema.Attribute.Relation<'manyToMany', 'api::faq-qa.faq-qa'>;
+    faqqas: Schema.Attribute.Relation<'manyToMany', 'api::faqqa.faqqa'>;
     gallery: Schema.Attribute.Media<'images' | 'videos', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -2509,6 +2531,7 @@ declare module '@strapi/strapi' {
       'api::dutcie-menu-page.dutcie-menu-page': ApiDutcieMenuPageDutcieMenuPage;
       'api::event.event': ApiEventEvent;
       'api::faq-qa.faq-qa': ApiFaqQaFaqQa;
+      'api::faqqa.faqqa': ApiFaqqaFaqqa;
       'api::global-about-us-page.global-about-us-page': ApiGlobalAboutUsPageGlobalAboutUsPage;
       'api::global-age-gate.global-age-gate': ApiGlobalAgeGateGlobalAgeGate;
       'api::global-contact-us-page.global-contact-us-page': ApiGlobalContactUsPageGlobalContactUsPage;

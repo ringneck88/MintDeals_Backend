@@ -354,6 +354,12 @@
       "relation": "manyToMany",
       "target": "api::faq-qa.faq-qa",
       "mappedBy": "stores"
+    },
+    "faqqas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::faqqa.faqqa",
+      "mappedBy": "stores"
     }
   }
 }

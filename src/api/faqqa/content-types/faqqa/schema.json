@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "faq_qas",
+  "collectionName": "faqqas",
   "info": {
-    "singularName": "faq-qa",
-    "pluralName": "faq-qas",
-    "displayName": "FAQ QA",
-    "description": "Frequently Asked Questions for stores - can be global or store-specific"
+    "singularName": "faqqa",
+    "pluralName": "faqqas",
+    "displayName": "Faqqa"
   },
   "options": {
     "draftAndPublish": true
@@ -14,44 +13,36 @@
   "attributes": {
     "question": {
       "type": "text",
-      "maxLength": 500,
       "required": true
     },
     "answer": {
-      "type": "richtext",
-      "required": true
+      "type": "blocks"
     },
     "slug": {
       "type": "uid",
-      "targetField": "question",
-      "required": false
+      "targetField": "question"
     },
     "is_global": {
-      "type": "boolean",
-      "required": true,
-      "default": false
+      "type": "boolean"
     },
     "stores": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::store.store",
-      "inversedBy": "faq_qas"
+      "inversedBy": "faqqas"
     },
     "category": {
-      "type": "string",
-      "maxLength": 100
+      "type": "string"
     },
     "order": {
-      "type": "integer",
-      "default": 0,
-      "min": 0
+      "type": "integer"
     },
     "is_active": {
       "type": "boolean",
       "required": true,
       "default": true
     },
-    "published_date": {
+    "Publish_date": {
       "type": "datetime"
     },
     "end_date": {
