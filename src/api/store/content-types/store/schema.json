@@ -347,7 +347,13 @@
           "localized": true
         }
       },
-      "default": "Mint Cannabis is your trusted dispensary for cannabis products and a welcoming, community-focused experience. Whether you're a medical patient or an adult-use customer, our knowledgeable budtenders are here to guide you, answer questions, and help you discover the perfect products for your needs. At every Mint location, you’ll find quality, value, and the exceptional service that defines the Mint experience. "
+      "default": "Mint Cannabis is your trusted dispensary for cannabis products and a welcoming, community-focused experience. Whether you're a medical patient or an adult-use customer, our knowledgeable budtenders are here to guide you, answer questions, and help you discover the perfect products for your needs. At every Mint location, you'll find quality, value, and the exceptional service that defines the Mint experience. "
+    },
+    "faq_qas": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::faq-qa.faq-qa",
+      "mappedBy": "stores"
     }
   }
 }

@@ -938,6 +938,77 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiFaqQaFaqQa extends Struct.CollectionTypeSchema {
+  collectionName: 'faq_qas';
+  info: {
+    description: 'Frequently Asked Questions for stores - can be global or store-specific';
+    displayName: 'FAQ Q&A';
+    pluralName: 'faq-qas';
+    singularName: 'faq-qa';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    answer: Schema.Attribute.RichText &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    category: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 100;
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    is_active: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<true>;
+    is_global: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::faq-qa.faq-qa'>;
+    order: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 0;
+        },
+        number
+      > &
+      Schema.Attribute.DefaultTo<0>;
+    publishedAt: Schema.Attribute.DateTime;
+    question: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 500;
+      }>;
+    slug: Schema.Attribute.UID<'question'>;
+    stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalAboutUsPageGlobalAboutUsPage
   extends Struct.SingleTypeSchema {
   collectionName: 'global_about_us_pages';
@@ -1722,6 +1793,7 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
         };
       }>;
     events: Schema.Attribute.Relation<'manyToMany', 'api::event.event'>;
+    faq_qas: Schema.Attribute.Relation<'manyToMany', 'api::faq-qa.faq-qa'>;
     gallery: Schema.Attribute.Media<'images' | 'videos', true> &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1900,7 +1972,7 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }> &
-      Schema.Attribute.DefaultTo<"Mint Cannabis is your trusted dispensary for cannabis products and a welcoming, community-focused experience. Whether you're a medical patient or an adult-use customer, our knowledgeable budtenders are here to guide you, answer questions, and help you discover the perfect products for your needs. At every Mint location, you\u2019ll find quality, value, and the exceptional service that defines the Mint experience. ">;
+      Schema.Attribute.DefaultTo<"Mint Cannabis is your trusted dispensary for cannabis products and a welcoming, community-focused experience. Whether you're a medical patient or an adult-use customer, our knowledgeable budtenders are here to guide you, answer questions, and help you discover the perfect products for your needs. At every Mint location, you'll find quality, value, and the exceptional service that defines the Mint experience. ">;
     timezone: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -2436,6 +2508,7 @@ declare module '@strapi/strapi' {
       'api::dutchie-discount-page.dutchie-discount-page': ApiDutchieDiscountPageDutchieDiscountPage;
       'api::dutcie-menu-page.dutcie-menu-page': ApiDutcieMenuPageDutcieMenuPage;
       'api::event.event': ApiEventEvent;
+      'api::faq-qa.faq-qa': ApiFaqQaFaqQa;
       'api::global-about-us-page.global-about-us-page': ApiGlobalAboutUsPageGlobalAboutUsPage;
       'api::global-age-gate.global-age-gate': ApiGlobalAgeGateGlobalAgeGate;
       'api::global-contact-us-page.global-contact-us-page': ApiGlobalContactUsPageGlobalContactUsPage;
