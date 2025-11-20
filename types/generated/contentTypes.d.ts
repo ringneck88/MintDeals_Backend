@@ -562,6 +562,75 @@ export interface ApiCompliancePolicyCompliancePolicy
   };
 }
 
+export interface ApiDiscountDiscount extends Struct.CollectionTypeSchema {
+  collectionName: 'discounts';
+  info: {
+    description: 'Discounts synced from Dutchie /reporting/discounts endpoint';
+    displayName: 'Discount';
+    pluralName: 'discounts';
+    singularName: 'discount';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    applicationMethod: Schema.Attribute.String;
+    appliesToLocations: Schema.Attribute.JSON;
+    brands: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    customerTypes: Schema.Attribute.JSON;
+    discountAmount: Schema.Attribute.Decimal;
+    discountCode: Schema.Attribute.String;
+    discountGroups: Schema.Attribute.JSON;
+    discountId: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    discountMethod: Schema.Attribute.String;
+    discountName: Schema.Attribute.String & Schema.Attribute.Required;
+    discountType: Schema.Attribute.String;
+    externalId: Schema.Attribute.String;
+    firstTimeCustomerOnly: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    includeNonCannabis: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    inventoryTags: Schema.Attribute.JSON;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    isAvailableOnline: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    isDeleted: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::discount.discount'
+    > &
+      Schema.Attribute.Private;
+    maximumItemsAllowed: Schema.Attribute.Integer;
+    maximumUsageCount: Schema.Attribute.Integer;
+    minimumItemsRequired: Schema.Attribute.Integer;
+    productCategories: Schema.Attribute.JSON;
+    products: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    requireManagerApproval: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    stackOnOtherDiscounts: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    stores: Schema.Attribute.JSON;
+    strains: Schema.Attribute.JSON;
+    tags: Schema.Attribute.JSON;
+    thresholdType: Schema.Attribute.String;
+    tiers: Schema.Attribute.JSON;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    validFrom: Schema.Attribute.DateTime;
+    validUntil: Schema.Attribute.DateTime;
+    vendors: Schema.Attribute.JSON;
+    weeklyRecurrenceInfo: Schema.Attribute.JSON;
+  };
+}
+
 export interface ApiDosageFormDosageForm extends Struct.CollectionTypeSchema {
   collectionName: 'dosage_forms';
   info: {
@@ -1078,6 +1147,94 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiInventoryInventory extends Struct.CollectionTypeSchema {
+  collectionName: 'inventories';
+  info: {
+    description: 'Inventory data from Dutchie reporting API';
+    displayName: 'Inventory';
+    pluralName: 'inventories';
+    singularName: 'inventory';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    allocatedQuantity: Schema.Attribute.Decimal;
+    alternateName: Schema.Attribute.String;
+    batchId: Schema.Attribute.Integer;
+    batchName: Schema.Attribute.String;
+    brandId: Schema.Attribute.Integer;
+    brandName: Schema.Attribute.String;
+    category: Schema.Attribute.String;
+    categoryId: Schema.Attribute.Integer;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    DutchieStoreID: Schema.Attribute.String;
+    effectivePotencyMg: Schema.Attribute.Decimal;
+    expirationDate: Schema.Attribute.DateTime;
+    externalPackageId: Schema.Attribute.String;
+    flowerEquivalent: Schema.Attribute.Decimal;
+    flowerEquivalentUnits: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    inventoryId: Schema.Attribute.Integer &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    isCannabis: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    labResults: Schema.Attribute.JSON;
+    labResultUrl: Schema.Attribute.String;
+    labTestStatus: Schema.Attribute.String;
+    lastModifiedDateUtc: Schema.Attribute.DateTime;
+    lineage: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::inventory.inventory'
+    > &
+      Schema.Attribute.Private;
+    manufacturingDate: Schema.Attribute.DateTime;
+    masterCategory: Schema.Attribute.String;
+    medicalOnly: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    medUnitPrice: Schema.Attribute.Decimal;
+    packagedDate: Schema.Attribute.DateTime;
+    packageId: Schema.Attribute.String;
+    packageNDC: Schema.Attribute.String;
+    packageStatus: Schema.Attribute.String;
+    potencyIndicator: Schema.Attribute.String;
+    pricingTierName: Schema.Attribute.String;
+    producer: Schema.Attribute.String;
+    producerId: Schema.Attribute.Integer;
+    productId: Schema.Attribute.Integer;
+    productName: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    quantityAvailable: Schema.Attribute.Decimal;
+    quantityUnits: Schema.Attribute.String;
+    recFlowerEquivalent: Schema.Attribute.Decimal;
+    recUnitPrice: Schema.Attribute.Decimal;
+    roomQuantities: Schema.Attribute.JSON;
+    sampleDate: Schema.Attribute.DateTime;
+    size: Schema.Attribute.String;
+    sku: Schema.Attribute.String;
+    storeId: Schema.Attribute.Integer;
+    storeName: Schema.Attribute.String;
+    strain: Schema.Attribute.String;
+    strainId: Schema.Attribute.Integer;
+    strainType: Schema.Attribute.String;
+    tags: Schema.Attribute.JSON;
+    testedDate: Schema.Attribute.DateTime;
+    unitCost: Schema.Attribute.Decimal;
+    unitPrice: Schema.Attribute.Decimal;
+    unitWeight: Schema.Attribute.Decimal;
+    unitWeightUnit: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    vendor: Schema.Attribute.String;
+    vendorId: Schema.Attribute.Integer;
   };
 }
 
@@ -1737,6 +1894,13 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
       Schema.Attribute.SetMinMaxLength<{
         maxLength: 50;
       }>;
+    summary: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }> &
+      Schema.Attribute.DefaultTo<"Mint Cannabis is your trusted dispensary for cannabis products and a welcoming, community-focused experience. Whether you're a medical patient or an adult-use customer, our knowledgeable budtenders are here to guide you, answer questions, and help you discover the perfect products for your needs. At every Mint location, you\u2019ll find quality, value, and the exceptional service that defines the Mint experience. ">;
     timezone: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -2263,6 +2427,7 @@ declare module '@strapi/strapi' {
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::compliance-policy.compliance-policy': ApiCompliancePolicyCompliancePolicy;
+      'api::discount.discount': ApiDiscountDiscount;
       'api::dosage-form.dosage-form': ApiDosageFormDosageForm;
       'api::dosage-ingredint.dosage-ingredint': ApiDosageIngredintDosageIngredint;
       'api::dosing-brand.dosing-brand': ApiDosingBrandDosingBrand;
@@ -2278,6 +2443,7 @@ declare module '@strapi/strapi' {
       'api::global-privacy-statment.global-privacy-statment': ApiGlobalPrivacyStatmentGlobalPrivacyStatment;
       'api::global-promotional-contest.global-promotional-contest': ApiGlobalPromotionalContestGlobalPromotionalContest;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::inventory.inventory': ApiInventoryInventory;
       'api::page.page': ApiPagePage;
       'api::product-discount.product-discount': ApiProductDiscountProductDiscount;
       'api::product.product': ApiProductProduct;
