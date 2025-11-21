@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_inventory_lineages",
+  "info": {
+    "displayName": "Lineage",
+    "icon": "link",
+    "description": "Package lineage data"
+  },
+  "options": {},
+  "attributes": {
+    "packageId": {
+      "type": "string"
+    },
+    "antecedentPackageDistance": {
+      "type": "integer"
+    },
+    "antecedentIsHarvest": {
+      "type": "boolean",
+      "default": false
+    },
+    "batchName": {
+      "type": "string"
+    },
+    "antecedentBatchName": {
+      "type": "string"
+    }
+  }
+}

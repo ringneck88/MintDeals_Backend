@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_inventory_tags",
+  "info": {
+    "displayName": "Tag",
+    "icon": "tag",
+    "description": "Inventory tag data"
+  },
+  "options": {},
+  "attributes": {
+    "tagId": {
+      "type": "string"
+    },
+    "tagName": {
+      "type": "string"
+    },
+    "packageId": {
+      "type": "string"
+    }
+  }
+}

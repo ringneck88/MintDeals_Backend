@@ -136,6 +136,66 @@ export interface DosingDosingCannabinoidsPerDose
   };
 }
 
+export interface InventoryLabResult extends Struct.ComponentSchema {
+  collectionName: 'components_inventory_lab_results';
+  info: {
+    description: 'Lab test result data';
+    displayName: 'Lab Result';
+    icon: 'flask';
+  };
+  attributes: {
+    labResultUnit: Schema.Attribute.String;
+    labResultUnitId: Schema.Attribute.String;
+    labTest: Schema.Attribute.String;
+    value: Schema.Attribute.Decimal;
+  };
+}
+
+export interface InventoryLineage extends Struct.ComponentSchema {
+  collectionName: 'components_inventory_lineages';
+  info: {
+    description: 'Package lineage data';
+    displayName: 'Lineage';
+    icon: 'link';
+  };
+  attributes: {
+    antecedentBatchName: Schema.Attribute.String;
+    antecedentIsHarvest: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    antecedentPackageDistance: Schema.Attribute.Integer;
+    batchName: Schema.Attribute.String;
+    packageId: Schema.Attribute.String;
+  };
+}
+
+export interface InventoryRoomQuantity extends Struct.ComponentSchema {
+  collectionName: 'components_inventory_room_quantities';
+  info: {
+    description: 'Room inventory quantity data';
+    displayName: 'Room Quantity';
+    icon: 'warehouse';
+  };
+  attributes: {
+    quantityAvailable: Schema.Attribute.Decimal;
+    room: Schema.Attribute.String;
+    roomId: Schema.Attribute.String;
+  };
+}
+
+export interface InventoryTag extends Struct.ComponentSchema {
+  collectionName: 'components_inventory_tags';
+  info: {
+    description: 'Inventory tag data';
+    displayName: 'Tag';
+    icon: 'tag';
+  };
+  attributes: {
+    packageId: Schema.Attribute.String;
+    tagId: Schema.Attribute.String;
+    tagName: Schema.Attribute.String;
+  };
+}
+
 export interface LegalDisclaimer extends Struct.ComponentSchema {
   collectionName: 'components_legal_disclaimers';
   info: {
@@ -548,6 +608,10 @@ declare module '@strapi/strapi' {
       'common.hours': CommonHours;
       'common.hours-exception': CommonHoursException;
       'dosing.dosing-cannabinoids-per-dose': DosingDosingCannabinoidsPerDose;
+      'inventory.lab-result': InventoryLabResult;
+      'inventory.lineage': InventoryLineage;
+      'inventory.room-quantity': InventoryRoomQuantity;
+      'inventory.tag': InventoryTag;
       'legal.disclaimer': LegalDisclaimer;
       'ops.fulfillment-rules': OpsFulfillmentRules;
       'page.blocks': PageBlocks;

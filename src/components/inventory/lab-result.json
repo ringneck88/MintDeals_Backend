@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_inventory_lab_results",
+  "info": {
+    "displayName": "Lab Result",
+    "icon": "flask",
+    "description": "Lab test result data"
+  },
+  "options": {},
+  "attributes": {
+    "labTest": {
+      "type": "string"
+    },
+    "value": {
+      "type": "decimal"
+    },
+    "labResultUnitId": {
+      "type": "string"
+    },
+    "labResultUnit": {
+      "type": "string"
+    }
+  }
+}

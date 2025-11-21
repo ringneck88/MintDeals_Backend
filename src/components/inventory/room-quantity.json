@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_inventory_room_quantities",
+  "info": {
+    "displayName": "Room Quantity",
+    "icon": "warehouse",
+    "description": "Room inventory quantity data"
+  },
+  "options": {},
+  "attributes": {
+    "roomId": {
+      "type": "string"
+    },
+    "room": {
+      "type": "string"
+    },
+    "quantityAvailable": {
+      "type": "decimal"
+    }
+  }
+}

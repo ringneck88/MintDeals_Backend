@@ -1173,6 +1173,91 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiInventoryInventory extends Struct.CollectionTypeSchema {
+  collectionName: 'inventories';
+  info: {
+    description: 'Dutchie inventory sync data';
+    displayName: 'Inventory';
+    pluralName: 'inventories';
+    singularName: 'inventory';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    allocatedQuantity: Schema.Attribute.Decimal;
+    alternateName: Schema.Attribute.String;
+    batchId: Schema.Attribute.String;
+    batchName: Schema.Attribute.String;
+    brandId: Schema.Attribute.String;
+    brandName: Schema.Attribute.String;
+    category: Schema.Attribute.String;
+    categoryId: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text;
+    effectivePotencyMg: Schema.Attribute.Decimal;
+    expirationDate: Schema.Attribute.DateTime;
+    externalPackageId: Schema.Attribute.String;
+    flowerEquivalent: Schema.Attribute.Decimal;
+    flowerEquivalentUnits: Schema.Attribute.String;
+    imageUrl: Schema.Attribute.String;
+    inventoryId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    isCannabis: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    labResults: Schema.Attribute.Component<'inventory.lab-result', true>;
+    labResultUrl: Schema.Attribute.String;
+    labTestStatus: Schema.Attribute.String;
+    lastModifiedDateUtc: Schema.Attribute.DateTime;
+    lineage: Schema.Attribute.Component<'inventory.lineage', true>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::inventory.inventory'
+    > &
+      Schema.Attribute.Private;
+    manufacturingDate: Schema.Attribute.DateTime;
+    masterCategory: Schema.Attribute.String;
+    medicalOnly: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    medUnitPrice: Schema.Attribute.Decimal;
+    packagedDate: Schema.Attribute.DateTime;
+    packageId: Schema.Attribute.String;
+    packageNDC: Schema.Attribute.String;
+    packageStatus: Schema.Attribute.String;
+    potencyIndicator: Schema.Attribute.String;
+    pricingTierName: Schema.Attribute.String;
+    producer: Schema.Attribute.String;
+    producerId: Schema.Attribute.String;
+    productId: Schema.Attribute.String;
+    productName: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    quantityAvailable: Schema.Attribute.Decimal;
+    quantityUnits: Schema.Attribute.String;
+    recFlowerEquivalent: Schema.Attribute.Decimal;
+    recUnitPrice: Schema.Attribute.Decimal;
+    roomQuantities: Schema.Attribute.Component<'inventory.room-quantity', true>;
+    sampleDate: Schema.Attribute.DateTime;
+    size: Schema.Attribute.String;
+    sku: Schema.Attribute.String;
+    strain: Schema.Attribute.String;
+    strainId: Schema.Attribute.String;
+    strainType: Schema.Attribute.String;
+    tags: Schema.Attribute.Component<'inventory.tag', true>;
+    testedDate: Schema.Attribute.DateTime;
+    unitCost: Schema.Attribute.Decimal;
+    unitPrice: Schema.Attribute.Decimal;
+    unitWeight: Schema.Attribute.Decimal;
+    unitWeightUnit: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    vendor: Schema.Attribute.String;
+    vendorId: Schema.Attribute.String;
+  };
+}
+
 export interface ApiPagePage extends Struct.CollectionTypeSchema {
   collectionName: 'pages';
   info: {
@@ -2183,6 +2268,7 @@ declare module '@strapi/strapi' {
       'api::global-privacy-statment.global-privacy-statment': ApiGlobalPrivacyStatmentGlobalPrivacyStatment;
       'api::global-promotional-contest.global-promotional-contest': ApiGlobalPromotionalContestGlobalPromotionalContest;
       'api::home-page.home-page': ApiHomePageHomePage;
+      'api::inventory.inventory': ApiInventoryInventory;
       'api::page.page': ApiPagePage;
       'api::promotion.promotion': ApiPromotionPromotion;
       'api::region.region': ApiRegionRegion;

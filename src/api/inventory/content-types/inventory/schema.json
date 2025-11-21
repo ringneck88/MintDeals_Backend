@@ -1,0 +1,193 @@
+{
+  "kind": "collectionType",
+  "collectionName": "inventories",
+  "info": {
+    "singularName": "inventory",
+    "pluralName": "inventories",
+    "displayName": "Inventory",
+    "description": "Dutchie inventory sync data"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "inventoryId": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "productId": {
+      "type": "string"
+    },
+    "sku": {
+      "type": "string"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "categoryId": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "imageUrl": {
+      "type": "string"
+    },
+    "quantityAvailable": {
+      "type": "decimal"
+    },
+    "quantityUnits": {
+      "type": "string"
+    },
+    "unitWeight": {
+      "type": "decimal"
+    },
+    "unitWeightUnit": {
+      "type": "string"
+    },
+    "unitCost": {
+      "type": "decimal"
+    },
+    "allocatedQuantity": {
+      "type": "decimal"
+    },
+    "flowerEquivalent": {
+      "type": "decimal"
+    },
+    "recFlowerEquivalent": {
+      "type": "decimal"
+    },
+    "flowerEquivalentUnits": {
+      "type": "string"
+    },
+    "batchId": {
+      "type": "string"
+    },
+    "batchName": {
+      "type": "string"
+    },
+    "packageId": {
+      "type": "string"
+    },
+    "packageStatus": {
+      "type": "string"
+    },
+    "unitPrice": {
+      "type": "decimal"
+    },
+    "medUnitPrice": {
+      "type": "decimal"
+    },
+    "recUnitPrice": {
+      "type": "decimal"
+    },
+    "strainId": {
+      "type": "string"
+    },
+    "strain": {
+      "type": "string"
+    },
+    "strainType": {
+      "type": "string"
+    },
+    "size": {
+      "type": "string"
+    },
+    "labResults": {
+      "type": "component",
+      "repeatable": true,
+      "component": "inventory.lab-result"
+    },
+    "testedDate": {
+      "type": "datetime"
+    },
+    "sampleDate": {
+      "type": "datetime"
+    },
+    "packagedDate": {
+      "type": "datetime"
+    },
+    "manufacturingDate": {
+      "type": "datetime"
+    },
+    "lastModifiedDateUtc": {
+      "type": "datetime"
+    },
+    "labTestStatus": {
+      "type": "string"
+    },
+    "vendorId": {
+      "type": "string"
+    },
+    "vendor": {
+      "type": "string"
+    },
+    "expirationDate": {
+      "type": "datetime"
+    },
+    "roomQuantities": {
+      "type": "component",
+      "repeatable": true,
+      "component": "inventory.room-quantity"
+    },
+    "pricingTierName": {
+      "type": "string"
+    },
+    "alternateName": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "component",
+      "repeatable": true,
+      "component": "inventory.tag"
+    },
+    "brandId": {
+      "type": "string"
+    },
+    "brandName": {
+      "type": "string"
+    },
+    "medicalOnly": {
+      "type": "boolean",
+      "default": false
+    },
+    "externalPackageId": {
+      "type": "string"
+    },
+    "producer": {
+      "type": "string"
+    },
+    "producerId": {
+      "type": "string"
+    },
+    "lineage": {
+      "type": "component",
+      "repeatable": true,
+      "component": "inventory.lineage"
+    },
+    "potencyIndicator": {
+      "type": "string"
+    },
+    "masterCategory": {
+      "type": "string"
+    },
+    "effectivePotencyMg": {
+      "type": "decimal"
+    },
+    "isCannabis": {
+      "type": "boolean",
+      "default": true
+    },
+    "packageNDC": {
+      "type": "string"
+    },
+    "labResultUrl": {
+      "type": "string"
+    }
+  }
+}
