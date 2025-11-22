@@ -113,6 +113,71 @@ export interface CommonHoursException extends Struct.ComponentSchema {
   };
 }
 
+export interface DiscountAppliesToLocation extends Struct.ComponentSchema {
+  collectionName: 'components_discount_applies_to_locations';
+  info: {
+    description: 'Location where discount applies';
+    displayName: 'Applies To Location';
+    icon: 'map-marker';
+  };
+  attributes: {
+    locationName: Schema.Attribute.String;
+  };
+}
+
+export interface DiscountDiscountGroup extends Struct.ComponentSchema {
+  collectionName: 'components_discount_discount_groups';
+  info: {
+    description: 'Discount group reference';
+    displayName: 'Discount Group';
+    icon: 'layer-group';
+  };
+  attributes: {
+    discountGroupId: Schema.Attribute.String;
+    discountGroupName: Schema.Attribute.String;
+  };
+}
+
+export interface DiscountIdFilter extends Struct.ComponentSchema {
+  collectionName: 'components_discount_id_filters';
+  info: {
+    description: 'Filter with IDs and exclusion flag';
+    displayName: 'ID Filter';
+    icon: 'filter';
+  };
+  attributes: {
+    ids: Schema.Attribute.JSON;
+    isExclusion: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface DiscountWeeklyRecurrence extends Struct.ComponentSchema {
+  collectionName: 'components_discount_weekly_recurrences';
+  info: {
+    description: 'Weekly schedule for discount';
+    displayName: 'Weekly Recurrence';
+    icon: 'calendar';
+  };
+  attributes: {
+    appliesOnFriday: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    appliesOnMonday: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    appliesOnSaturday: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    appliesOnSunday: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    appliesOnThursday: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    appliesOnTuesday: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    appliesOnWednesday: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    endTime: Schema.Attribute.String;
+    startTime: Schema.Attribute.String;
+  };
+}
+
 export interface DosingDosingCannabinoidsPerDose
   extends Struct.ComponentSchema {
   collectionName: 'components_dosing_dosing_cannabinoids_per_doses';
@@ -607,6 +672,10 @@ declare module '@strapi/strapi' {
       'common.geo-point': CommonGeoPoint;
       'common.hours': CommonHours;
       'common.hours-exception': CommonHoursException;
+      'discount.applies-to-location': DiscountAppliesToLocation;
+      'discount.discount-group': DiscountDiscountGroup;
+      'discount.id-filter': DiscountIdFilter;
+      'discount.weekly-recurrence': DiscountWeeklyRecurrence;
       'dosing.dosing-cannabinoids-per-dose': DosingDosingCannabinoidsPerDose;
       'inventory.lab-result': InventoryLabResult;
       'inventory.lineage': InventoryLineage;

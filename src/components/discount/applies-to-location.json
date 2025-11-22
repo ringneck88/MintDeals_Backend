@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_discount_applies_to_locations",
+  "info": {
+    "displayName": "Applies To Location",
+    "icon": "map-marker",
+    "description": "Location where discount applies"
+  },
+  "options": {},
+  "attributes": {
+    "locationName": {
+      "type": "string"
+    }
+  }
+}

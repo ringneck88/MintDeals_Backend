@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_discount_id_filters",
+  "info": {
+    "displayName": "ID Filter",
+    "icon": "filter",
+    "description": "Filter with IDs and exclusion flag"
+  },
+  "options": {},
+  "attributes": {
+    "ids": {
+      "type": "json"
+    },
+    "isExclusion": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

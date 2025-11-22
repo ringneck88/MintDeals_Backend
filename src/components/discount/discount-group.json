@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_discount_discount_groups",
+  "info": {
+    "displayName": "Discount Group",
+    "icon": "layer-group",
+    "description": "Discount group reference"
+  },
+  "options": {},
+  "attributes": {
+    "discountGroupId": {
+      "type": "string"
+    },
+    "discountGroupName": {
+      "type": "string"
+    }
+  }
+}

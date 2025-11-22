@@ -562,6 +562,80 @@ export interface ApiCompliancePolicyCompliancePolicy
   };
 }
 
+export interface ApiDiscountDiscount extends Struct.CollectionTypeSchema {
+  collectionName: 'discounts';
+  info: {
+    description: 'Dutchie discount sync data';
+    displayName: 'Discount';
+    pluralName: 'discounts';
+    singularName: 'discount';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    applicationMethod: Schema.Attribute.String;
+    appliesToLocations: Schema.Attribute.Component<
+      'discount.applies-to-location',
+      true
+    >;
+    brands: Schema.Attribute.Component<'discount.id-filter', false>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    customerTypes: Schema.Attribute.Component<'discount.id-filter', false>;
+    discountAmount: Schema.Attribute.Decimal;
+    discountCode: Schema.Attribute.String;
+    discountGroups: Schema.Attribute.Component<'discount.discount-group', true>;
+    discountId: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    discountMethod: Schema.Attribute.String;
+    discountName: Schema.Attribute.String;
+    discountType: Schema.Attribute.String;
+    externalId: Schema.Attribute.String;
+    firstTimeCustomerOnly: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    includeNonCannabis: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    inventoryTags: Schema.Attribute.Component<'discount.id-filter', false>;
+    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    isAvailableOnline: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    isDeleted: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::discount.discount'
+    > &
+      Schema.Attribute.Private;
+    maximumItemsAllowed: Schema.Attribute.Integer;
+    maximumUsageCount: Schema.Attribute.Integer;
+    minimumItemsRequired: Schema.Attribute.Integer;
+    productCategories: Schema.Attribute.Component<'discount.id-filter', false>;
+    products: Schema.Attribute.Component<'discount.id-filter', false>;
+    publishedAt: Schema.Attribute.DateTime;
+    requireManagerApproval: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    stackOnOtherDiscounts: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    strains: Schema.Attribute.Component<'discount.id-filter', false>;
+    tags: Schema.Attribute.Component<'discount.id-filter', false>;
+    thresholdType: Schema.Attribute.String;
+    tiers: Schema.Attribute.Component<'discount.id-filter', false>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    validFrom: Schema.Attribute.DateTime;
+    validUntil: Schema.Attribute.DateTime;
+    vendors: Schema.Attribute.Component<'discount.id-filter', false>;
+    weeklyRecurrenceInfo: Schema.Attribute.Component<
+      'discount.weekly-recurrence',
+      false
+    >;
+  };
+}
+
 export interface ApiDosageFormDosageForm extends Struct.CollectionTypeSchema {
   collectionName: 'dosage_forms';
   info: {
@@ -2251,6 +2325,7 @@ declare module '@strapi/strapi' {
       'api::brand.brand': ApiBrandBrand;
       'api::category.category': ApiCategoryCategory;
       'api::compliance-policy.compliance-policy': ApiCompliancePolicyCompliancePolicy;
+      'api::discount.discount': ApiDiscountDiscount;
       'api::dosage-form.dosage-form': ApiDosageFormDosageForm;
       'api::dosage-ingredint.dosage-ingredint': ApiDosageIngredintDosageIngredint;
       'api::dosing-brand.dosing-brand': ApiDosingBrandDosingBrand;

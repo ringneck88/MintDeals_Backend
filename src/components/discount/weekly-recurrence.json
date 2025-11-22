@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_discount_weekly_recurrences",
+  "info": {
+    "displayName": "Weekly Recurrence",
+    "icon": "calendar",
+    "description": "Weekly schedule for discount"
+  },
+  "options": {},
+  "attributes": {
+    "startTime": {
+      "type": "string"
+    },
+    "endTime": {
+      "type": "string"
+    },
+    "appliesOnMonday": {
+      "type": "boolean",
+      "default": false
+    },
+    "appliesOnTuesday": {
+      "type": "boolean",
+      "default": false
+    },
+    "appliesOnWednesday": {
+      "type": "boolean",
+      "default": false
+    },
+    "appliesOnThursday": {
+      "type": "boolean",
+      "default": false
+    },
+    "appliesOnFriday": {
+      "type": "boolean",
+      "default": false
+    },
+    "appliesOnSaturday": {
+      "type": "boolean",
+      "default": false
+    },
+    "appliesOnSunday": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}
