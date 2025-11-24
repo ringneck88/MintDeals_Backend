@@ -9,6 +9,9 @@
   "attributes": {
     "locationName": {
       "type": "string"
+    },
+    "dutchieStoreID": {
+      "type": "string"
     }
   }
 }
