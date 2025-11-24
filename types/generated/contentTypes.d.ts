@@ -1271,6 +1271,7 @@ export interface ApiInventoryInventory extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     description: Schema.Attribute.Text;
+    dutchieStoreID: Schema.Attribute.String;
     effectivePotencyMg: Schema.Attribute.Decimal;
     expirationDate: Schema.Attribute.DateTime;
     externalPackageId: Schema.Attribute.String;

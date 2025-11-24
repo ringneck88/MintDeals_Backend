@@ -121,6 +121,7 @@ export interface DiscountAppliesToLocation extends Struct.ComponentSchema {
     icon: 'map-marker';
   };
   attributes: {
+    dutchieStoreID: Schema.Attribute.String;
     locationName: Schema.Attribute.String;
   };
 }

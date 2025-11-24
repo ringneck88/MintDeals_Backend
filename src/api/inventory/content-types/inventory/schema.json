@@ -100,8 +100,8 @@
     },
     "labResults": {
       "type": "component",
-      "repeatable": true,
-      "component": "inventory.lab-result"
+      "component": "inventory.lab-result",
+      "repeatable": true
     },
     "testedDate": {
       "type": "datetime"
@@ -132,8 +132,8 @@
     },
     "roomQuantities": {
       "type": "component",
-      "repeatable": true,
-      "component": "inventory.room-quantity"
+      "component": "inventory.room-quantity",
+      "repeatable": true
     },
     "pricingTierName": {
       "type": "string"
@@ -143,8 +143,8 @@
     },
     "tags": {
       "type": "component",
-      "repeatable": true,
-      "component": "inventory.tag"
+      "component": "inventory.tag",
+      "repeatable": true
     },
     "brandId": {
       "type": "string"
@@ -167,8 +167,8 @@
     },
     "lineage": {
       "type": "component",
-      "repeatable": true,
-      "component": "inventory.lineage"
+      "component": "inventory.lineage",
+      "repeatable": true
     },
     "potencyIndicator": {
       "type": "string"
@@ -187,6 +187,9 @@
       "type": "string"
     },
     "labResultUrl": {
+      "type": "string"
+    },
+    "dutchieStoreID": {
       "type": "string"
     }
   }

@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-11-23T16:30:26.509Z"
+    "x-generation-date": "2025-11-24T19:20:35.774Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -13729,6 +13729,9 @@
           },
           "locationName": {
             "type": "string"
+          },
+          "dutchieStoreID": {
+            "type": "string"
           }
         }
       },
@@ -27283,6 +27286,9 @@
               "labResultUrl": {
                 "type": "string"
               },
+              "dutchieStoreID": {
+                "type": "string"
+              },
               "locale": {
                 "type": "string"
               },
@@ -27542,6 +27548,9 @@
             "type": "string"
           },
           "labResultUrl": {
+            "type": "string"
+          },
+          "dutchieStoreID": {
             "type": "string"
           },
           "createdAt": {
@@ -28035,6 +28044,9 @@
                   "type": "string"
                 },
                 "labResultUrl": {
+                  "type": "string"
+                },
+                "dutchieStoreID": {
                   "type": "string"
                 },
                 "createdAt": {
