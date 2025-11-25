@@ -28,9 +28,6 @@
     "isClosed": {
       "type": "boolean",
       "default": false
-    },
-    "is24hours": {
-      "type": "boolean"
     }
   }
 }

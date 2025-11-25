@@ -92,7 +92,6 @@ export interface CommonHours extends Struct.ComponentSchema {
       ]
     > &
       Schema.Attribute.Required;
-    is24hours: Schema.Attribute.Boolean;
     isClosed: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     openTime: Schema.Attribute.Time;
   };

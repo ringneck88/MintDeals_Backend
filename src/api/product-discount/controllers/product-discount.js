@@ -31,7 +31,16 @@ module.exports = {
       await client.connect();
       console.log('Successfully connected to postgres database');
 
-      let query = `SELECT * FROM product_discounts`;
+      // Check available materialized views for debugging
+      const viewsResult = await client.query(`
+        SELECT schemaname, matviewname
+        FROM pg_matviews
+        WHERE schemaname = 'public'
+      `);
+      console.log('Available materialized views:', viewsResult.rows);
+
+      // Query the materialized view in the public schema
+      let query = `SELECT * FROM public.product_discounts`;
       const params = [];
 
       if (dutchie_store_id) {
@@ -41,6 +50,7 @@ module.exports = {
 
       query += ` ORDER BY created_at DESC LIMIT 1000`;
 
+      console.log('Executing query:', query, 'with params:', params);
       const result = await client.query(query, params);
 
       ctx.send({

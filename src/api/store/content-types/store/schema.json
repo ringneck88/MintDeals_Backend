@@ -117,6 +117,15 @@
       "component": "store.amenity-tag",
       "repeatable": true
     },
+    "is_24hours": {
+      "type": "boolean",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "default": false
+    },
     "hours": {
       "type": "component",
       "pluginOptions": {
