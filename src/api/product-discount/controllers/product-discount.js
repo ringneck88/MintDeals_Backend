@@ -5,6 +5,7 @@ const { Client } = require('pg');
 module.exports = {
   // Diagnostic endpoint to check database contents
   async diagnostics(ctx) {
+    const { database = 'railway' } = ctx.query; // Default to railway database
     let client;
     try {
       const postgresDatabaseUrl = process.env.POSTGRES_DATABASE_URL || process.env.DATABASE_URL;
@@ -15,7 +16,7 @@ module.exports = {
         connectionConfig = {
           host: url.hostname,
           port: parseInt(url.port, 10) || 5432,
-          database: 'postgres',
+          database: database, // Use query parameter
           user: url.username,
           password: url.password,
           ssl: { rejectUnauthorized: false },
@@ -27,7 +28,7 @@ module.exports = {
           port: dbConfig.port,
           user: dbConfig.user,
           password: dbConfig.password,
-          database: 'postgres',
+          database: database, // Use query parameter
           ssl: dbConfig.ssl,
         };
       }
@@ -98,12 +99,12 @@ module.exports = {
       let connectionConfig;
 
       if (postgresDatabaseUrl) {
-        // Parse the URL and force database to 'postgres'
+        // Parse the URL - use railway database (where materialized view exists)
         const url = new URL(postgresDatabaseUrl);
         connectionConfig = {
           host: url.hostname,
           port: parseInt(url.port, 10) || 5432,
-          database: 'postgres', // Force connection to postgres database
+          database: url.pathname.slice(1), // Use the database from URL (should be 'railway')
           user: url.username,
           password: url.password,
           ssl: {
@@ -111,14 +112,14 @@ module.exports = {
           },
         };
       } else {
-        // Fallback to Strapi config but override database name
+        // Fallback to Strapi config (already uses correct database)
         const dbConfig = strapi.config.get('database.connection.connection');
         connectionConfig = {
           host: dbConfig.host,
           port: dbConfig.port,
           user: dbConfig.user,
           password: dbConfig.password,
-          database: 'postgres', // Force connection to postgres database
+          database: dbConfig.database,
           ssl: dbConfig.ssl,
         };
       }
