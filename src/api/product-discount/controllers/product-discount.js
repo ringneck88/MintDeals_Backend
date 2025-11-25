@@ -12,6 +12,13 @@ module.exports = {
       // Use the same host/credentials but different database name
       const dbConfig = strapi.config.get('database.connection.connection');
 
+      console.log('Connecting to database:', {
+        host: dbConfig.host,
+        port: dbConfig.port,
+        user: dbConfig.user,
+        database: 'postgres',
+      });
+
       client = new Client({
         host: dbConfig.host,
         port: dbConfig.port,
@@ -22,6 +29,7 @@ module.exports = {
       });
 
       await client.connect();
+      console.log('Successfully connected to postgres database');
 
       let query = `SELECT * FROM product_discounts`;
       const params = [];
