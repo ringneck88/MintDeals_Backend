@@ -3,6 +3,90 @@
 const { Client } = require('pg');
 
 module.exports = {
+  // Diagnostic endpoint to check database contents
+  async diagnostics(ctx) {
+    let client;
+    try {
+      const postgresDatabaseUrl = process.env.POSTGRES_DATABASE_URL || process.env.DATABASE_URL;
+      let connectionConfig;
+
+      if (postgresDatabaseUrl) {
+        const url = new URL(postgresDatabaseUrl);
+        connectionConfig = {
+          host: url.hostname,
+          port: parseInt(url.port, 10) || 5432,
+          database: 'postgres',
+          user: url.username,
+          password: url.password,
+          ssl: { rejectUnauthorized: false },
+        };
+      } else {
+        const dbConfig = strapi.config.get('database.connection.connection');
+        connectionConfig = {
+          host: dbConfig.host,
+          port: dbConfig.port,
+          user: dbConfig.user,
+          password: dbConfig.password,
+          database: 'postgres',
+          ssl: dbConfig.ssl,
+        };
+      }
+
+      client = new Client(connectionConfig);
+      await client.connect();
+
+      // Get all materialized views
+      const matviewsResult = await client.query(`
+        SELECT schemaname, matviewname
+        FROM pg_matviews
+        ORDER BY schemaname, matviewname
+      `);
+
+      // Get all tables
+      const tablesResult = await client.query(`
+        SELECT schemaname, tablename
+        FROM pg_tables
+        WHERE schemaname NOT IN ('pg_catalog', 'information_schema')
+        ORDER BY schemaname, tablename
+      `);
+
+      // Get all databases
+      const databasesResult = await client.query(`
+        SELECT datname FROM pg_database
+        WHERE datistemplate = false
+        ORDER BY datname
+      `);
+
+      ctx.body = {
+        connectionInfo: {
+          host: connectionConfig.host,
+          port: connectionConfig.port,
+          database: connectionConfig.database,
+          user: connectionConfig.user,
+        },
+        databases: databasesResult.rows,
+        materializedViews: matviewsResult.rows,
+        tables: tablesResult.rows.slice(0, 20), // Limit to first 20 tables
+      };
+    } catch (error) {
+      console.error('Diagnostics error:', error);
+      ctx.status = 500;
+      ctx.body = {
+        error: 'Diagnostics failed',
+        message: error.message,
+        details: error.toString(),
+      };
+    } finally {
+      if (client) {
+        try {
+          await client.end();
+        } catch (e) {
+          console.error('Error closing connection:', e);
+        }
+      }
+    }
+  },
+
   async getProductDiscounts(ctx) {
     let client;
     try {
