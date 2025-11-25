@@ -80,10 +80,22 @@ module.exports = {
 
     } catch (error) {
       console.error('Error fetching product discounts:', error);
-      ctx.throw(500, error);
+
+      // Return detailed error for debugging
+      ctx.status = 500;
+      ctx.body = {
+        error: 'Failed to fetch product discounts',
+        message: error.message,
+        details: error.toString(),
+        stack: process.env.NODE_ENV === 'development' ? error.stack : undefined,
+      };
     } finally {
       if (client) {
-        await client.end();
+        try {
+          await client.end();
+        } catch (endError) {
+          console.error('Error closing database connection:', endError);
+        }
       }
     }
   },
