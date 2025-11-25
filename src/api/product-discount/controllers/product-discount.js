@@ -153,7 +153,7 @@ module.exports = {
         params.push(dutchie_store_id);
       }
 
-      query += ` ORDER BY created_at DESC LIMIT 1000`;
+      query += ` LIMIT 1000`;
 
       console.log('Executing query:', query, 'with params:', params);
       const result = await client.query(query, params);
