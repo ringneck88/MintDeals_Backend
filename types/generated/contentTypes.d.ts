@@ -1518,7 +1518,24 @@ export interface ApiStoreBannerStoreBanner extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    banner: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    banneMediumRectangle300x250: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    banner289x71: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    bannerLargeRectangle336x280: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    bannerLeaderboard3019X900: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    bannerMobile300x50: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    BannerSkyscraper160x600: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

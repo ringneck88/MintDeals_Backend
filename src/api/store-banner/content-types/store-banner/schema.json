@@ -19,7 +19,7 @@
     "Name": {
       "type": "string"
     },
-    "banner": {
+    "bannerLeaderboard3019X900": {
       "type": "media",
       "multiple": false,
       "allowedTypes": [
@@ -34,6 +34,56 @@
     },
     "endDate": {
       "type": "datetime"
+    },
+    "banner289x71": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "bannerMobile300x50": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "BannerSkyscraper160x600": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "bannerLargeRectangle336x280": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "banneMediumRectangle300x250": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
     }
   }
 }
