@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "gbp_image_urls",
+  "info": {
+    "singularName": "gbp-image-url",
+    "pluralName": "gbp-image-urls",
+    "displayName": "gbp_image_url"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "image_url": {
+      "type": "string"
+    },
+    "store": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::store.store",
+      "inversedBy": "gbp_image_url"
+    },
+    "start_date": {
+      "type": "datetime"
+    },
+    "end_date": {
+      "type": "datetime"
+    }
+  }
+}

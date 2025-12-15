@@ -371,6 +371,12 @@
           "localized": true
         }
       }
+    },
+    "gbp_image_url": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::gbp-image-url.gbp-image-url",
+      "mappedBy": "store"
     }
   }
 }

@@ -1036,6 +1036,39 @@ export interface ApiFaqqaFaqqa extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiGbpImageUrlGbpImageUrl extends Struct.CollectionTypeSchema {
+  collectionName: 'gbp_image_urls';
+  info: {
+    displayName: 'gbp_image_url';
+    pluralName: 'gbp-image-urls';
+    singularName: 'gbp-image-url';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    end_date: Schema.Attribute.DateTime;
+    image_url: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::gbp-image-url.gbp-image-url'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'name'>;
+    start_date: Schema.Attribute.DateTime;
+    store: Schema.Attribute.Relation<'oneToOne', 'api::store.store'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiGlobalAboutUsPageGlobalAboutUsPage
   extends Struct.SingleTypeSchema {
   collectionName: 'global_about_us_pages';
@@ -1675,6 +1708,10 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    gbp_image_url: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::gbp-image-url.gbp-image-url'
+    >;
     geo: Schema.Attribute.JSON &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -2386,6 +2423,7 @@ declare module '@strapi/strapi' {
       'api::event.event': ApiEventEvent;
       'api::faq-qa.faq-qa': ApiFaqQaFaqQa;
       'api::faqqa.faqqa': ApiFaqqaFaqqa;
+      'api::gbp-image-url.gbp-image-url': ApiGbpImageUrlGbpImageUrl;
       'api::global-about-us-page.global-about-us-page': ApiGlobalAboutUsPageGlobalAboutUsPage;
       'api::global-age-gate.global-age-gate': ApiGlobalAgeGateGlobalAgeGate;
       'api::global-contact-us-page.global-contact-us-page': ApiGlobalContactUsPageGlobalContactUsPage;
