@@ -363,6 +363,14 @@
           "localized": true
         }
       }
+    },
+    "google_map_link": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

@@ -1687,6 +1687,12 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
+    google_map_link: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     google_place_id: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
