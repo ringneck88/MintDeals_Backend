@@ -356,7 +356,7 @@
         }
       }
     },
-    "google_map_embed": {
+    "google_map_link": {
       "type": "string",
       "pluginOptions": {
         "i18n": {
@@ -364,8 +364,8 @@
         }
       }
     },
-    "google_map_link": {
-      "type": "string",
+    "google_map_embed": {
+      "type": "text",
       "pluginOptions": {
         "i18n": {
           "localized": true

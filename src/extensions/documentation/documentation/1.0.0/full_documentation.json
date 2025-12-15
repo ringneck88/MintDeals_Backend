@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-12-15T18:57:28.586Z"
+    "x-generation-date": "2025-12-15T19:05:48.810Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -23439,10 +23439,10 @@
                 "discription": {
                   "type": "string"
                 },
-                "google_map_embed": {
+                "google_map_link": {
                   "type": "string"
                 },
-                "google_map_link": {
+                "google_map_embed": {
                   "type": "string"
                 },
                 "createdAt": {
@@ -30891,10 +30891,10 @@
                       "discription": {
                         "type": "string"
                       },
-                      "google_map_embed": {
+                      "google_map_link": {
                         "type": "string"
                       },
-                      "google_map_link": {
+                      "google_map_embed": {
                         "type": "string"
                       },
                       "createdAt": {
@@ -32264,10 +32264,10 @@
               "discription": {
                 "type": "string"
               },
-              "google_map_embed": {
+              "google_map_link": {
                 "type": "string"
               },
-              "google_map_link": {
+              "google_map_embed": {
                 "type": "string"
               },
               "locale": {
@@ -34919,10 +34919,10 @@
                         "discription": {
                           "type": "string"
                         },
-                        "google_map_embed": {
+                        "google_map_link": {
                           "type": "string"
                         },
-                        "google_map_link": {
+                        "google_map_embed": {
                           "type": "string"
                         },
                         "createdAt": {
@@ -35653,10 +35653,10 @@
           "discription": {
             "type": "string"
           },
-          "google_map_embed": {
+          "google_map_link": {
             "type": "string"
           },
-          "google_map_link": {
+          "google_map_embed": {
             "type": "string"
           },
           "createdAt": {
@@ -38692,10 +38692,10 @@
                 "discription": {
                   "type": "string"
                 },
-                "google_map_embed": {
+                "google_map_link": {
                   "type": "string"
                 },
-                "google_map_link": {
+                "google_map_embed": {
                   "type": "string"
                 },
                 "createdAt": {
@@ -43373,10 +43373,10 @@
               "discription": {
                 "type": "string"
               },
-              "google_map_embed": {
+              "google_map_link": {
                 "type": "string"
               },
-              "google_map_link": {
+              "google_map_embed": {
                 "type": "string"
               },
               "createdAt": {
