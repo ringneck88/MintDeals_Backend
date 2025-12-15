@@ -1708,10 +1708,6 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
           localized: true;
         };
       }>;
-    gbp_image_url: Schema.Attribute.Relation<
-      'oneToOne',
-      'api::gbp-image-url.gbp-image-url'
-    >;
     geo: Schema.Attribute.JSON &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
@@ -1886,6 +1882,12 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
         };
       }> &
       Schema.Attribute.DefaultTo<"Mint Cannabis is your trusted dispensary for cannabis products and a welcoming, community-focused experience. Whether you're a medical patient or an adult-use customer, our knowledgeable budtenders are here to guide you, answer questions, and help you discover the perfect products for your needs. At every Mint location, you'll find quality, value, and the exceptional service that defines the Mint experience. ">;
+    tickertape: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     timezone: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

@@ -24,8 +24,7 @@
     "store": {
       "type": "relation",
       "relation": "oneToOne",
-      "target": "api::store.store",
-      "inversedBy": "gbp_image_url"
+      "target": "api::store.store"
     },
     "start_date": {
       "type": "datetime"
