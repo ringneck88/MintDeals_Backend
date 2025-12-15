@@ -406,6 +406,7 @@ export interface ApiAnnouncementAnnouncement
     description: Schema.Attribute.Text;
     end_date: Schema.Attribute.DateTime;
     featured_image: Schema.Attribute.Media<'images'>;
+    google_map_embed: Schema.Attribute.String;
     is_pinned: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -1608,6 +1609,12 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
     };
   };
   attributes: {
+    about: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     address: Schema.Attribute.Component<'common.address', false> &
       Schema.Attribute.Required &
       Schema.Attribute.SetPluginOptions<{
@@ -1630,6 +1637,12 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     cta_blocks: Schema.Attribute.Component<'ui.cta', true> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    discription: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -1663,6 +1676,12 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
         };
       }>;
     geo: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    google_map_embed: Schema.Attribute.String &
       Schema.Attribute.SetPluginOptions<{
         i18n: {
           localized: true;

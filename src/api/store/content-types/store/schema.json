@@ -339,6 +339,30 @@
       "relation": "manyToMany",
       "target": "api::faqqa.faqqa",
       "mappedBy": "stores"
+    },
+    "about": {
+      "type": "text",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "discription": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "google_map_embed": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
     }
   }
 }

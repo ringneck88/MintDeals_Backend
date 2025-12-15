@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "2025-12-11T15:59:35.071Z"
+    "x-generation-date": "2025-12-15T18:09:31.536Z"
   },
   "x-strapi-config": {
     "plugins": [
@@ -22256,6 +22256,9 @@
                                           }
                                         }
                                       },
+                                      "google_map_embed": {
+                                        "type": "string"
+                                      },
                                       "createdAt": {
                                         "type": "string",
                                         "format": "date-time"
@@ -23429,6 +23432,15 @@
                       }
                     }
                   }
+                },
+                "about": {
+                  "type": "string"
+                },
+                "discription": {
+                  "type": "string"
+                },
+                "google_map_embed": {
+                  "type": "string"
                 },
                 "createdAt": {
                   "type": "string",
@@ -30566,6 +30578,9 @@
                                 }
                               }
                             },
+                            "google_map_embed": {
+                              "type": "string"
+                            },
                             "createdAt": {
                               "type": "string",
                               "format": "date-time"
@@ -30866,6 +30881,15 @@
                             }
                           }
                         }
+                      },
+                      "about": {
+                        "type": "string"
+                      },
+                      "discription": {
+                        "type": "string"
+                      },
+                      "google_map_embed": {
+                        "type": "string"
                       },
                       "createdAt": {
                         "type": "string",
@@ -32227,6 +32251,15 @@
                   ],
                   "example": "string or id"
                 }
+              },
+              "about": {
+                "type": "string"
+              },
+              "discription": {
+                "type": "string"
+              },
+              "google_map_embed": {
+                "type": "string"
               },
               "locale": {
                 "type": "string"
@@ -33921,6 +33954,9 @@
                                       }
                                     }
                                   },
+                                  "google_map_embed": {
+                                    "type": "string"
+                                  },
                                   "createdAt": {
                                     "type": "string",
                                     "format": "date-time"
@@ -34868,6 +34904,15 @@
                             }
                           }
                         },
+                        "about": {
+                          "type": "string"
+                        },
+                        "discription": {
+                          "type": "string"
+                        },
+                        "google_map_embed": {
+                          "type": "string"
+                        },
                         "createdAt": {
                           "type": "string",
                           "format": "date-time"
@@ -35589,6 +35634,15 @@
                 }
               }
             }
+          },
+          "about": {
+            "type": "string"
+          },
+          "discription": {
+            "type": "string"
+          },
+          "google_map_embed": {
+            "type": "string"
           },
           "createdAt": {
             "type": "string",
@@ -37440,6 +37494,9 @@
                                           }
                                         }
                                       },
+                                      "google_map_embed": {
+                                        "type": "string"
+                                      },
                                       "createdAt": {
                                         "type": "string",
                                         "format": "date-time"
@@ -38613,6 +38670,15 @@
                       }
                     }
                   }
+                },
+                "about": {
+                  "type": "string"
+                },
+                "discription": {
+                  "type": "string"
+                },
+                "google_map_embed": {
+                  "type": "string"
                 },
                 "createdAt": {
                   "type": "string",
@@ -42106,6 +42172,9 @@
                                         }
                                       }
                                     },
+                                    "google_map_embed": {
+                                      "type": "string"
+                                    },
                                     "createdAt": {
                                       "type": "string",
                                       "format": "date-time"
@@ -43279,6 +43348,15 @@
                     }
                   }
                 }
+              },
+              "about": {
+                "type": "string"
+              },
+              "discription": {
+                "type": "string"
+              },
+              "google_map_embed": {
+                "type": "string"
               },
               "createdAt": {
                 "type": "string",

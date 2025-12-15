@@ -30,6 +30,7 @@
     },
     "announcement_type": {
       "type": "enumeration",
+      "default": "general",
       "enum": [
         "general",
         "hours_change",
@@ -38,18 +39,17 @@
         "policy_update",
         "maintenance",
         "urgent"
-      ],
-      "default": "general"
+      ]
     },
     "priority": {
       "type": "enumeration",
+      "default": "normal",
       "enum": [
         "low",
         "normal",
         "high",
         "urgent"
-      ],
-      "default": "normal"
+      ]
     },
     "start_date": {
       "type": "datetime",
@@ -94,6 +94,9 @@
       "relation": "manyToMany",
       "target": "api::region.region",
       "inversedBy": "announcements"
+    },
+    "google_map_embed": {
+      "type": "string"
     }
   }
 }
