@@ -944,62 +944,6 @@ export interface ApiEventEvent extends Struct.CollectionTypeSchema {
   };
 }
 
-export interface ApiFaqQaFaqQa extends Struct.CollectionTypeSchema {
-  collectionName: 'faq_qas';
-  info: {
-    description: 'Frequently Asked Questions for stores - can be global or store-specific';
-    displayName: 'FAQ QA';
-    pluralName: 'faq-qas';
-    singularName: 'faq-qa';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    answer: Schema.Attribute.RichText & Schema.Attribute.Required;
-    category: Schema.Attribute.String &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 100;
-      }>;
-    createdAt: Schema.Attribute.DateTime;
-    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-    end_date: Schema.Attribute.DateTime;
-    is_active: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<true>;
-    is_global: Schema.Attribute.Boolean &
-      Schema.Attribute.Required &
-      Schema.Attribute.DefaultTo<false>;
-    locale: Schema.Attribute.String & Schema.Attribute.Private;
-    localizations: Schema.Attribute.Relation<
-      'oneToMany',
-      'api::faq-qa.faq-qa'
-    > &
-      Schema.Attribute.Private;
-    order: Schema.Attribute.Integer &
-      Schema.Attribute.SetMinMax<
-        {
-          min: 0;
-        },
-        number
-      > &
-      Schema.Attribute.DefaultTo<0>;
-    published_date: Schema.Attribute.DateTime;
-    publishedAt: Schema.Attribute.DateTime;
-    question: Schema.Attribute.Text &
-      Schema.Attribute.Required &
-      Schema.Attribute.SetMinMaxLength<{
-        maxLength: 500;
-      }>;
-    slug: Schema.Attribute.UID<'question'>;
-    stores: Schema.Attribute.Relation<'manyToMany', 'api::store.store'>;
-    updatedAt: Schema.Attribute.DateTime;
-    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
-      Schema.Attribute.Private;
-  };
-}
-
 export interface ApiFaqqaFaqqa extends Struct.CollectionTypeSchema {
   collectionName: 'faqqas';
   info: {
@@ -1700,7 +1644,6 @@ export interface ApiStoreStore extends Struct.CollectionTypeSchema {
         };
       }>;
     events: Schema.Attribute.Relation<'manyToMany', 'api::event.event'>;
-    faq_qas: Schema.Attribute.Relation<'manyToMany', 'api::faq-qa.faq-qa'>;
     faqqas: Schema.Attribute.Relation<'manyToMany', 'api::faqqa.faqqa'>;
     gallery: Schema.Attribute.Media<'images' | 'videos', true> &
       Schema.Attribute.SetPluginOptions<{
@@ -2423,7 +2366,6 @@ declare module '@strapi/strapi' {
       'api::dutchie-discount-page.dutchie-discount-page': ApiDutchieDiscountPageDutchieDiscountPage;
       'api::dutcie-menu-page.dutcie-menu-page': ApiDutcieMenuPageDutcieMenuPage;
       'api::event.event': ApiEventEvent;
-      'api::faq-qa.faq-qa': ApiFaqQaFaqQa;
       'api::faqqa.faqqa': ApiFaqqaFaqqa;
       'api::gbp-image-url.gbp-image-url': ApiGbpImageUrlGbpImageUrl;
       'api::global-about-us-page.global-about-us-page': ApiGlobalAboutUsPageGlobalAboutUsPage;

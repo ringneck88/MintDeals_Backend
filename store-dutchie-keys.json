@@ -1,0 +1,164 @@
+{
+  "stores": [
+    {
+      "name": "Mint 75th Ave Phoenix",
+      "dutchieApiKey": "0b97d3c312394d3996615bb48a485537",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Bell Road Phoenix",
+      "dutchieApiKey": "b0d5458684d24f48bb4c927be754a855",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Bonita Springs",
+      "dutchieApiKey": "36ee688ff3a54bcd8385daed73d9a77b",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Bradenton",
+      "dutchieApiKey": "843cb110410440dc9a30ed773086db83",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Brandon",
+      "dutchieApiKey": "8616fa4d09844ef6b2948ea051a86b3d",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Buckeye/Verado",
+      "dutchieApiKey": "304ac2bf1e52429a9756374d413ad105",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Cape Coral",
+      "dutchieApiKey": "bfb5ba6135be4c2f87c2dae5dc65f5e4",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Coldwater",
+      "dutchieApiKey": "39570af865b9438faccccfe4254b7480",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Delray Beach",
+      "dutchieApiKey": "5e2cd18b41d842ddb5f71653ad87c23b",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint El Mirage",
+      "dutchieApiKey": "d5e8669c0fd342caaa9f030b4d12990b",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Gainesville",
+      "dutchieApiKey": "50245e95667f44b1bbfa978e4941bda0",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Jacksonville",
+      "dutchieApiKey": "cc1f8cc819224ee299ae92fe30b76ba0",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Kalamazoo",
+      "dutchieApiKey": "efda9d54e3144b36bcd3cc2ce300fc71",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Las Vegas Strip",
+      "dutchieApiKey": "db81d7234da14a4b821a91ea2b905a8c",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Longwood",
+      "dutchieApiKey": "ded7a979a93a4762854405ce9e96f22c",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Melbourne",
+      "dutchieApiKey": "b8988b2098bb40758c84b716a3166d0c",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Mesa",
+      "dutchieApiKey": "889f25ea627845e0966efa0b1a62d502",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Miami",
+      "dutchieApiKey": "f8de0bb5923f4776b84d8d1b14a284f7",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Monroe",
+      "dutchieApiKey": "b24a4df0634d4fc9a9ab9c00ab7a16af",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint New Buffalo",
+      "dutchieApiKey": "c9084efa94744b1a8841ed8771e07ba0",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Northern Phoenix",
+      "dutchieApiKey": "ff22efdbcb3848afb847348eed3c60d2",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Orlando",
+      "dutchieApiKey": "24ded778c80f432d8bf7c2a374246b83",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Portage",
+      "dutchieApiKey": "cc13cfb6b321429d9df41417c1a2aabe",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Roseville",
+      "dutchieApiKey": "bb94179e9c444e6c862782d8933b109b",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Sarasota",
+      "dutchieApiKey": "77b4ec09982242bd9743ae8e8956e20f",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Scottsdale",
+      "dutchieApiKey": "11020b5819764490b9f37e837e11cf54",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Spring Valley",
+      "dutchieApiKey": "fca48df1bd19443aaade23655ed46891",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint St. Augustine",
+      "dutchieApiKey": "c978ff75294b41b895169cf435670167",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint St. Peters",
+      "dutchieApiKey": "5e2b613e0e9042af8d3d57b0821be742",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Stuart",
+      "dutchieApiKey": "8179bf6f1d934f49b483ce47e5b63d2c",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Tempe",
+      "dutchieApiKey": "7b740c2ee6f94e698b2e7bbf8cf2ddb1",
+      "AMbranchcode": ""
+    },
+    {
+      "name": "Mint Willowbrook",
+      "dutchieApiKey": "73ffbbba679b44eaa96c3757536206c3",
+      "AMbranchcode": ""
+    }
+  ]
+}
